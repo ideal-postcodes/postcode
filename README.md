@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cblanc/postcode.js.png)](https://travis-ci.org/cblanc/postcode.js) 
+
 # Postcodes
 
 Utility methods for UK Postcodes
