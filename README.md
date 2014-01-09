@@ -29,9 +29,7 @@ postcode.normalise()  // => "ID1 1QD"
 
 ## Note on Postcode Validation
 
-Postcodes cannot be validated just using just a regular expression. Proper postcode validation requires having a full list of postcodes to check against. 
-
-Please do not solely rely on a regex to check postcodes or you're bound to get false postives/negatives.
+Postcodes cannot be validated just with a regular expression. Proper postcode validation requires having a full list of postcodes to check against. Relying on a regex will produce false postives/negatives.
 
 ## License
 
