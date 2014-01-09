@@ -1,0 +1,28 @@
+{
+	"tests" : [
+		{
+			"base" : "L27 8XY",
+			"expected" : "8XY"
+		},
+		{
+			"base" : "NR10 3EZ",
+			"expected" : "3EZ"
+		},
+		{
+			"base" : "RG4 5AY",
+			"expected" : "5AY"
+		},
+		{
+			"base" : "NE69 7AW",
+			"expected" : "7AW"
+		},
+		{
+			"base" : "SE23 2NF",
+			"expected" : "2NF"
+		},
+		{
+			"base" : "BT35 8GE",
+			"expected" : "8GE"
+		}
+	]
+}

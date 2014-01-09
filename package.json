@@ -1,0 +1,33 @@
+{
+  "name": "postcode",
+  "version": "0.1.0",
+  "description": "UK Postcode helper methods",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "chai": "~1.8.1"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.0"
+  },
+  "scripts": {
+    "test": "mocha tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cblanc/postcode.js"
+  },
+  "keywords": [
+    "uk",
+    "postcode",
+    "validation",
+    "parsing"
+  ],
+  "author": "Chris Blanchard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cblanc/postcode.js/issues"
+  }
+}
