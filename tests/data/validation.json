@@ -1,0 +1,36 @@
+{
+	"tests" : [
+		{
+			"base" : "L27 8XY",
+			"expected" : true
+		},
+		{
+			"base" : "NR103EZ",
+			"expected" : true
+		},
+		{
+			"base" : "RG45AY",
+			"expected" : true
+		},
+		{
+			"base" : "NE69 7AW",
+			"expected" : true
+		},
+		{
+			"base" : "SE23 2NF",
+			"expected" : true
+		},
+		{
+			"base" : "Definitely wrong",
+			"expected" : false
+		},
+		{
+			"base" : "12FSSD",
+			"expected" : false
+		},
+		{
+			"base" : "BT35 8GE",
+			"expected" : true
+		}
+	]
+}
