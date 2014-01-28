@@ -1,8 +1,11 @@
 [![Build Status](https://travis-ci.org/cblanc/postcode.js.png)](https://travis-ci.org/cblanc/postcode.js) 
+[![Dependency Status](https://gemnasium.com/cblanc/postcode.js.png)](https://gemnasium.com/cblanc/postcode.js)
 
 # Postcodes
 
-Utility methods for UK Postcodes
+Utility methods for UK Postcodes.
+
+Included is a test suite that tests against all postcodes listed in the Ordnance Survey's postcode dataset as of January 2014. 
 
 ## Getting Started
 
@@ -36,3 +39,5 @@ Postcodes cannot be validated just with a regular expression. Proper postcode va
 ## License
 
 MIT
+
+Contains Ordnance Survey Data © Crown Copyright & Database Right 2014
