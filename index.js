@@ -1,7 +1,6 @@
 "use strict";
 
 var validationRegex = /^[a-z0-9]{1,4}\s?\d[a-z]{2}$/i,
-		incodeRegex = /^[a-z0-9]{1,4}/i,
 		outcodeRegex = /\d[a-z]{2}$/i;
 
 function isValidPostcode (postcode) {
@@ -9,7 +8,7 @@ function isValidPostcode (postcode) {
 }
 
 function parseIncode (postcode) {
-	return postcode.match(incodeRegex)[0];
+	return postcode.replace(outcodeRegex, "").replace(/\s/, "");
 }
 
 function parseOutcode (postcode) {

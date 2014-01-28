@@ -23,6 +23,30 @@
 		{
 			"base" : "BT35 8GE",
 			"expected" : "8GE"
+		},
+		{
+			"base" : "L278XY",
+			"expected" : "8XY"
+		},
+		{
+			"base" : "NR103EZ",
+			"expected" : "3EZ"
+		},
+		{
+			"base" : "RG45AY",
+			"expected" : "5AY"
+		},
+		{
+			"base" : "NE697AW",
+			"expected" : "7AW"
+		},
+		{
+			"base" : "SE232NF",
+			"expected" : "2NF"
+		},
+		{
+			"base" : "BT358GE",
+			"expected" : "8GE"
 		}
 	]
 }
