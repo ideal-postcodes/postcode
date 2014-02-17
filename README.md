@@ -28,6 +28,13 @@ postcode.incode()     // => "1QD"
 postcode.normalise()  // => "ID1 1QD"
 ```
 
+Misc. Class Methods include
+
+```
+Postcode.validOutcode(outcode)
+```
+
+
 ## Testing
 
 ```npm test```

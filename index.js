@@ -26,7 +26,7 @@ function Postcode (rawPostcode) {
 }
 
 Postcode.validOutcode = function (outcode) {
-	return !!outcode.match(validationRegex);
+	return !!outcode.match(validOutcodeRegex);
 }
 
 Postcode.prototype.valid = function () {

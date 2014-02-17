@@ -46,23 +46,13 @@ describe("Postcode.validOutcode", function () {
 		testData = fs.readFile(path.join(dataDir, "outcodes.json"), function (error, data) {
 			if (error) throw error;
 			testData = JSON.parse(data);
-			testData.forEach(function (test) {
+			testData.tests.forEach(function (test) {
 				assert.isTrue(Postcode.validOutcode(test.expected));
 			});
 			done();
 		});
 	});
-	it ("should return false for invalid outcodes", function (done) {
-		testData = fs.readFile(path.join(dataDir, "incodes.json"), function (error, data) {
-			if (error) throw error;
-			testData = JSON.parse(data);
-			testData.forEach(function (test) {
-				assert.isFalse(Postcode.validOutcode(test.expected));
-			});
-			done();
-		});
-	});
-})
+});
 
 describe("Incode parsing", function () {
 	before(function (done) {
