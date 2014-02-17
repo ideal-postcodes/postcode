@@ -1,18 +1,18 @@
 "use strict";
 
 var validationRegex = /^[a-z0-9]{1,4}\s*?\d[a-z]{2}$/i,
-		outcodeRegex = /\d[a-z]{2}$/i;
+		incodeRegex = /\d[a-z]{2}$/i;
 
 function isValidPostcode (postcode) {
 	return !!postcode.match(validationRegex);
 }
 
-function parseIncode (postcode) {
-	return postcode.replace(outcodeRegex, "").replace(/\s+/, "");
+function parseOutcode (postcode) {
+	return postcode.replace(incodeRegex, "").replace(/\s+/, "");
 }
 
-function parseOutcode (postcode) {
-	return postcode.match(outcodeRegex)[0];
+function parseIncode (postcode) {
+	return postcode.match(incodeRegex)[0];
 }
 
 function Postcode (rawPostcode) {
@@ -45,7 +45,7 @@ Postcode.prototype.outcode = function () {
 Postcode.prototype.normalise = function () {
 	if (!this._valid) return null;
 	if (this.postcode) return this.postcode;
-	return [this.incode()," ", this.outcode()].join("");
+	return [this.outcode()," ", this.incode()].join("");
 }
 
 module.exports = Postcode;

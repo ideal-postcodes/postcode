@@ -43,7 +43,7 @@ describe("Postcode normalisation", function () {
 
 describe("Incode parsing", function () {
 	before(function (done) {
-		testData = fs.readFile(path.join(dataDir, "incode.json"), function (error, data) {
+		testData = fs.readFile(path.join(dataDir, "incodes.json"), function (error, data) {
 			if (error) throw error;
 			testData = JSON.parse(data);
 			done();
@@ -63,7 +63,7 @@ describe("Incode parsing", function () {
 
 describe("Outcode parsing", function () {
 	before(function (done) {
-		testData = fs.readFile(path.join(dataDir, "outcode.json"), function (error, data) {
+		testData = fs.readFile(path.join(dataDir, "outcodes.json"), function (error, data) {
 			if (error) throw error;
 			testData = JSON.parse(data);
 			done();
