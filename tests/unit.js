@@ -52,6 +52,13 @@ describe("Postcode.validOutcode", function () {
 			done();
 		});
 	});
+	it ("should return false for invalid outcode", function (done) {
+		var invalidOutcodes = ["BOGUS", "Hello there", "12345"];
+		invalidOutcodes.forEach(function (code) {
+			assert.isFalse(Postcode.validOutcode(code));
+		});
+		done();
+	});
 });
 
 describe("Incode parsing", function () {

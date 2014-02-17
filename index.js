@@ -2,7 +2,7 @@
 
 var validationRegex = /^[a-z0-9]{1,4}\s*?\d[a-z]{2}$/i,
 		incodeRegex = /\d[a-z]{2}$/i,
-		validOutcodeRegex = /[a-z0-9]{1,4}/i;
+		validOutcodeRegex = /^[a-z0-9]{1,4}$/i;
 
 function isValidPostcode (postcode) {
 	return !!postcode.match(validationRegex);
