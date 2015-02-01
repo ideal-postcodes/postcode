@@ -99,3 +99,60 @@ describe("Outcode parsing", function () {
 		assert.isNull(new Postcode("Definitly bogus").outcode());
 	});
 });
+
+describe("Area parsing", function () {
+	before(function (done) {
+		testData = fs.readFile(path.join(dataDir, "areas.json"), function (error, data) {
+			if (error) throw error;
+			testData = JSON.parse(data);
+			done();
+		});
+	});
+
+	it ("should correctly parse areas", function () {
+		testData.tests.forEach(function (elem) {
+			assert.equal(new Postcode(elem.base).area(), elem.expected);
+		});
+	});
+	it ("should return null if invalid postcode", function () {
+		assert.isNull(new Postcode("Definitely bogus").area());
+	});
+});
+
+describe("Sector parsing", function () {
+	before(function (done) {
+		testData = fs.readFile(path.join(dataDir, "sectors.json"), function (error, data) {
+			if (error) throw error;
+			testData = JSON.parse(data);
+			done();
+		});
+	});
+
+	it ("should correctly parse sectors", function () {
+		testData.tests.forEach(function (elem) {
+			assert.equal(new Postcode(elem.base).sector(), elem.expected);
+		});
+	});
+	it ("should return null if invalid postcode", function () {
+		assert.isNull(new Postcode("Definitely bogus").sector());
+	});
+});
+
+describe("Unit parsing", function () {
+	before(function (done) {
+		testData = fs.readFile(path.join(dataDir, "units.json"), function (error, data) {
+			if (error) throw error;
+			testData = JSON.parse(data);
+			done();
+		});
+	});
+
+	it ("should correctly parse units", function () {
+		testData.tests.forEach(function (elem) {
+			assert.equal(new Postcode(elem.base).unit(), elem.expected);
+		});
+	});
+	it ("should return null if invalid postcode", function () {
+		assert.isNull(new Postcode("Definitely bogus").unit());
+	});
+});

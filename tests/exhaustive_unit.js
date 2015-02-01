@@ -111,4 +111,76 @@ describe("Exhaustive postcode test", function () {
 			done();
 		});
 	});
+	describe("Area parsing", function () {
+		it("should return the correct area", function (done) {
+			this.timeout(60000);
+			testData.forEach(function (testPostcode) {
+				var pc = testPostcode[0],
+						postcode = new Postcode(pc),
+						downcasePostcode = new Postcode(pc.toLowerCase()),
+						unspacedPostcode = new Postcode(pc.replace(/\s/, "")),
+						testArea;
+				if (pc.length === 7) {
+					// Since this isn't normalised in dataset, best we can do is see if normalised data matches
+					assert.equal(postcode.area(), downcasePostcode.area());
+					assert.equal(postcode.area(), unspacedPostcode.area());
+				} else {
+					// Any space indicates incode/outcode
+					testArea = pc.match(/\s.*/)[0].replace(/\s/, "");
+					assert.equal(postcode.area(), testArea);
+					assert.equal(downcasePostcode.area(), testArea);
+					assert.equal(unspacedPostcode.area(), testArea);
+				}
+			});
+			done();
+		});
+	});
+	describe("Sector parsing", function () {
+		it("should return the correct sector", function (done) {
+			this.timeout(60000);
+			testData.forEach(function (testPostcode) {
+				var pc = testPostcode[0],
+						postcode = new Postcode(pc),
+						downcasePostcode = new Postcode(pc.toLowerCase()),
+						unspacedPostcode = new Postcode(pc.replace(/\s/, "")),
+						testSector;
+				if (pc.length === 7) {
+					// Since this isn't normalised in dataset, best we can do is see if normalised data matches
+					assert.equal(postcode.sector(), downcasePostcode.sector());
+					assert.equal(postcode.sector(), unspacedPostcode.sector());
+				} else {
+					// Any space indicates incode/outcode
+					testSector = pc.match(/\s.*/)[0].replace(/\s/, "");
+					assert.equal(postcode.sector(), testSector);
+					assert.equal(downcasePostcode.sector(), testSector);
+					assert.equal(unspacedPostcode.sector(), testSector);
+				}
+			});
+			done();
+		});
+	});
+	describe("Unit parsing", function () {
+		it("should return the correct unit", function (done) {
+			this.timeout(60000);
+			testData.forEach(function (testPostcode) {
+				var pc = testPostcode[0],
+						postcode = new Postcode(pc),
+						downcasePostcode = new Postcode(pc.toLowerCase()),
+						unspacedPostcode = new Postcode(pc.replace(/\s/, "")),
+						testUnit;
+				if (pc.length === 7) {
+					// Since this isn't normalised in dataset, best we can do is see if normalised data matches
+					assert.equal(postcode.unit(), downcasePostcode.unit());
+					assert.equal(postcode.unit(), unspacedPostcode.unit());
+				} else {
+					// Any space indicates incode/outcode
+					testUnit = pc.match(/\s.*/)[0].replace(/\s/, "");
+					assert.equal(postcode.unit(), testUnit);
+					assert.equal(downcasePostcode.unit(), testUnit);
+					assert.equal(unspacedPostcode.unit(), testUnit);
+				}
+			});
+			done();
+		});
+	});
 });

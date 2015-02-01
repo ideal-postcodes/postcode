@@ -1,0 +1,52 @@
+{
+	"tests" : [
+		{
+			"base" : "L27 8XY",
+			"expected" : "L"
+		},
+		{
+			"base" : "NR10 3EZ",
+			"expected" : "NR"
+		},
+		{
+			"base" : "RG4 5AY",
+			"expected" : "RG"
+		},
+		{
+			"base" : "NE69 7AW",
+			"expected" : "NE"
+		},
+		{
+			"base" : "SE23 2NF",
+			"expected" : "SE"
+		},
+		{
+			"base" : "BT35 8GE",
+			"expected" : "BT"
+		},
+		{
+			"base" : "L278XY",
+			"expected" : "L"
+		},
+		{
+			"base" : "NR103EZ",
+			"expected" : "NR"
+		},
+		{
+			"base" : "RG45AY",
+			"expected" : "RG"
+		},
+		{
+			"base" : "NE697AW",
+			"expected" : "NE"
+		},
+		{
+			"base" : "SE232NF",
+			"expected" : "SE"
+		},
+		{
+			"base" : "BT358GE",
+			"expected" : "BT"
+		}
+	]
+}
