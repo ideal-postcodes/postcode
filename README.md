@@ -1,7 +1,4 @@
-[![Build Status](https://travis-ci.org/cblanc/postcode.js.png)](https://travis-ci.org/cblanc/postcode.js)
-[![Dependency Status](https://gemnasium.com/cblanc/postcode.js.png)](https://gemnasium.com/cblanc/postcode.js)
-
-# Postcodes
+# Postcode.js [![Build Status](https://travis-ci.org/ideal-postcodes/postcode.js.svg)](https://travis-ci.org/ideal-postcodes/postcode.js)
 
 Utility methods for UK Postcodes.
 
