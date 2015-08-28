@@ -1,11 +1,11 @@
 "use strict";
 
-var validationRegex = /^[a-z0-9]{1,4}\s*?\d[a-z]{2}$/i,
+var validationRegex = /^[a-z\d]{1,4}\s*?\d[a-z]{2}$/i,
 		incodeRegex = /\d[a-z]{2}$/i,
-		validOutcodeRegex = /^[a-z0-9]{1,4}$/i,
+		validOutcodeRegex = /^[a-z\d]{1,4}$/i,
 		areaRegex = /^[a-z]{1,2}/i,
 		districtSplitRegex = /^([a-z]{1,2}\d)([a-z])$/i,
-		sectorRegex = /^[a-z0-9]{1,4}\s*?\d/i,
+		sectorRegex = /^[a-z\d]{1,4}\s*?\d/i,
 		unitRegex = /[a-z]{2}$/i;
 
 function isValidPostcode (postcode) {
