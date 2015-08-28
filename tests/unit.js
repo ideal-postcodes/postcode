@@ -119,6 +119,44 @@ describe("Area parsing", function () {
 	});
 });
 
+describe("District parsing", function () {
+	before(function (done) {
+		testData = fs.readFile(path.join(dataDir, "districts.json"), function (error, data) {
+			if (error) throw error;
+			testData = JSON.parse(data);
+			done();
+		});
+	});
+
+	it ("should correctly parse districts", function () {
+		testData.tests.forEach(function (elem) {
+			assert.equal(new Postcode(elem.base).district(), elem.expected);
+		});
+	});
+	it ("should return null if invalid postcode", function () {
+		assert.isNull(new Postcode("Definitely bogus").district());
+	});
+});
+
+describe("Sub-district parsing", function () {
+	before(function (done) {
+		testData = fs.readFile(path.join(dataDir, "sub-districts.json"), function (error, data) {
+			if (error) throw error;
+			testData = JSON.parse(data);
+			done();
+		});
+	});
+
+	it ("should correctly parse sub-districts", function () {
+		testData.tests.forEach(function (elem) {
+			assert.equal(new Postcode(elem.base).subDistrict(), elem.expected);
+		});
+	});
+	it ("should return null if invalid postcode", function () {
+		assert.isNull(new Postcode("Definitely bogus").subDistrict());
+	});
+});
+
 describe("Sector parsing", function () {
 	before(function (done) {
 		testData = fs.readFile(path.join(dataDir, "sectors.json"), function (error, data) {
