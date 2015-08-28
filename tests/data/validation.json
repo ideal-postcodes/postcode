@@ -29,6 +29,14 @@
 			"expected" : false
 		},
 		{
+			"base" : "1A1 1AA",
+			"expected" : false
+		},
+		{
+			"base" : "MA1 1AA",
+			"expected" : true
+		},
+		{
 			"base" : "BT35 8GE",
 			"expected" : true
 		}
