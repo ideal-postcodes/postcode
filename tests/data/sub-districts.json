@@ -1,0 +1,68 @@
+{
+	"tests" : [
+		{
+			"base" : "L27 8XY",
+			"expected" : null
+		},
+		{
+			"base" : "NR10 3EZ",
+			"expected" : null
+		},
+		{
+			"base" : "RG4 5AY",
+			"expected" : null
+		},
+		{
+			"base" : "NE69 7AW",
+			"expected" : null
+		},
+		{
+			"base" : "SE23 2NF",
+			"expected" : null
+		},
+		{
+			"base" : "BT35 8GE",
+			"expected" : null
+		},
+		{
+			"base" : "L278XY",
+			"expected" : null
+		},
+		{
+			"base" : "NR103EZ",
+			"expected" : null
+		},
+		{
+			"base" : "RG45AY",
+			"expected" : null
+		},
+		{
+			"base" : "NE697AW",
+			"expected" : null
+		},
+		{
+			"base" : "SE232NF",
+			"expected" : null
+		},
+		{
+			"base" : "BT358GE",
+			"expected" : null
+		},
+		{
+			"base" : "EC1A 1BB",
+			"expected" : "EC1A"
+		},
+		{
+			"base" : "W1A0AX",
+			"expected" : "W1A"
+		},
+		{
+			"base" : "NW1W1AA",
+			"expected" : "NW1W"
+		},
+		{
+			"base" : "N1C 0AB",
+			"expected" : "N1C"
+		}
+	]
+}

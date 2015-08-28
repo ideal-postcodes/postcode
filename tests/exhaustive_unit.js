@@ -135,6 +135,54 @@ describe("Exhaustive postcode test", function () {
 			done();
 		});
 	});
+	describe("District parsing", function () {
+		it("should return the correct district", function (done) {
+			this.timeout(60000);
+			testData.forEach(function (testPostcode) {
+				var pc = testPostcode[0],
+						postcode = new Postcode(pc),
+						downcasePostcode = new Postcode(pc.toLowerCase()),
+						unspacedPostcode = new Postcode(pc.replace(/\s/, "")),
+						testDistrict;
+				if (pc.length === 7) {
+					// Since this isn't normalised in dataset, best we can do is see if normalised data matches
+					assert.equal(postcode.district(), downcasePostcode.district());
+					assert.equal(postcode.district(), unspacedPostcode.district());
+				} else {
+					// Any space indicates incode/outcode
+					testDistrict = pc.match(/\s.*/)[0].replace(/\s/, "");
+					assert.equal(postcode.district(), testDistrict);
+					assert.equal(downcasePostcode.district(), testDistrict);
+					assert.equal(unspacedPostcode.district(), testDistrict);
+				}
+			});
+			done();
+		});
+	});
+	describe("Sub-district parsing", function () {
+		it("should return the correct sub-district", function (done) {
+			this.timeout(60000);
+			testData.forEach(function (testPostcode) {
+				var pc = testPostcode[0],
+						postcode = new Postcode(pc),
+						downcasePostcode = new Postcode(pc.toLowerCase()),
+						unspacedPostcode = new Postcode(pc.replace(/\s/, "")),
+						testSubDistrict;
+				if (pc.length === 7) {
+					// Since this isn't normalised in dataset, best we can do is see if normalised data matches
+					assert.equal(postcode.subDistrict(), downcasePostcode.subDistrict());
+					assert.equal(postcode.subDistrict(), unspacedPostcode.subDistrict());
+				} else {
+					// Any space indicates incode/outcode
+					testSubDistrict = pc.match(/\s.*/)[0].replace(/\s/, "");
+					assert.equal(postcode.subDistrict(), testSubDistrict);
+					assert.equal(downcasePostcode.subDistrict(), testSubDistrict);
+					assert.equal(unspacedPostcode.subDistrict(), testSubDistrict);
+				}
+			});
+			done();
+		});
+	});
 	describe("Sector parsing", function () {
 		it("should return the correct sector", function (done) {
 			this.timeout(60000);

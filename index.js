@@ -4,6 +4,7 @@ var validationRegex = /^[a-z0-9]{1,4}\s*?\d[a-z]{2}$/i,
 		incodeRegex = /\d[a-z]{2}$/i,
 		validOutcodeRegex = /^[a-z0-9]{1,4}$/i,
 		areaRegex = /^[a-z]{1,2}/i,
+		districtSplitRegex = /^([a-z]{1,2}\d)([a-z])$/i,
 		sectorRegex = /^[a-z0-9]{1,4}\s*?\d/i,
 		unitRegex = /[a-z]{2}$/i;
 
@@ -67,6 +68,24 @@ Postcode.prototype.area = function () {
 	if (this._area) return this._area;
 	this._area = parseArea(this._raw).toUpperCase();
 	return this._area;
+}
+
+Postcode.prototype.district = function () {
+	if (!this._valid) return null;
+	if (this._district) return this._district;
+	var outcode = this.outcode();
+	var split = outcode.match(districtSplitRegex);
+	this._district = split ? split[1] : outcode;
+	return this._district;
+}
+
+Postcode.prototype.subDistrict = function () {
+	if (!this._valid) return null;
+	if (this._subDistrict) return this._subDistrict;
+	var outcode = this.outcode();
+	var split = outcode.match(districtSplitRegex);
+	this._subDistrict = split ? outcode : null;
+	return this._subDistrict;
 }
 
 Postcode.prototype.sector = function () {
