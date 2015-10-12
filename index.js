@@ -35,10 +35,6 @@ function parseUnit (postcode) {
 function Postcode (rawPostcode) {
 	this._raw = rawPostcode;
 	this._valid = isValidPostcode(rawPostcode);
-
-	if (!this._valid) {
-		return null;
-	}
 }
 
 Postcode.validOutcode = function (outcode) {
