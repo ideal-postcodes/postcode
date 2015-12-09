@@ -1,8 +1,8 @@
 "use strict";
 
-var validationRegex = /^[a-z][a-z\d]{1,3}\s*?\d[a-z]{2}$/i,
+var validationRegex = /^[a-z]([a-z]\d[a-z]|\d[a-z]|\d|\d\d|[a-z]\d|[a-z]\d\d)\s*?\d[a-z]{2}$/i,
 		incodeRegex = /\d[a-z]{2}$/i,
-		validOutcodeRegex = /^[a-z][a-z\d]{1,3}$/i,
+		validOutcodeRegex = /^[a-z]([a-z]\d[a-z]|\d[a-z]|\d|\d\d|[a-z]\d|[a-z]\d\d)$/i,
 		areaRegex = /^[a-z]{1,2}/i,
 		districtSplitRegex = /^([a-z]{1,2}\d)([a-z])$/i,
 		sectorRegex = /^[a-z][a-z\d]{1,3}\s*?\d/i,
