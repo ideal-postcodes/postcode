@@ -47,6 +47,54 @@
 		{
 			"base" : "BT358GE",
 			"expected" : "BT35"
+		},
+		{
+			"base": "AA9A 9AA",
+			"expected": "AA9A"
+		},
+		{
+			"base": "A9A 9AA",
+			"expected": "A9A"
+		},
+		{
+			"base": "A9 9AA",
+			"expected": "A9"
+		},
+		{
+			"base": "A99 9AA",
+			"expected": "A99"
+		},
+		{
+			"base": "AA9 9AA",
+			"expected": "AA9"
+		},
+		{
+			"base": "AA99 9AA",
+			"expected": "AA99"
+		},
+		{
+			"base": "AA9A9AA",
+			"expected": "AA9A"
+		},
+		{
+			"base": "A9A9AA",
+			"expected": "A9A"
+		},
+		{
+			"base": "A99AA",
+			"expected": "A9"
+		},
+		{
+			"base": "A999AA",
+			"expected": "A99"
+		},
+		{
+			"base": "AA99AA",
+			"expected": "AA9"
+		},
+		{
+			"base": "AA999AA",
+			"expected": "AA99"
 		}
 	]
 }
