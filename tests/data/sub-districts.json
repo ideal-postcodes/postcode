@@ -63,6 +63,30 @@
 		{
 			"base" : "N1C 0AB",
 			"expected" : "N1C"
+		},
+		{
+			"base": "AA9A 9AA",
+			"expected": "AA9A"
+		},
+		{
+			"base": "A9A 9AA",
+			"expected": "A9A"
+		},
+		{
+			"base": "A9 9AA",
+			"expected": null
+		},
+		{
+			"base": "A99 9AA",
+			"expected": null
+		},
+		{
+			"base": "AA9 9AA",
+			"expected": null
+		},
+		{
+			"base": "AA99 9AA",
+			"expected": null
 		}
 	]
 }

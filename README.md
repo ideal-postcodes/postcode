@@ -31,7 +31,18 @@ postcode.sector()       // => "EC1V 9"
 postcode.unit()         // => "LB"
 ```
 
-Misc. Class Methods include
+### Method Overview
+
+| Postcode | .outcode() | .incode() | .area() | .district() | .subDistrict() | .sector() | .unit() |
+|----------|------------|-----------|---------|-------------|----------------|-----------|---------|
+| AA9A 9AA | AA9A       | 9AA       | AA      | AA9         | AA9A           | AA9A 9    | AA      |
+| A9A 9AA  | A9A        | 9AA       | A       | A9          | A9A            | A9A 9     | AA      |
+| A9 9AA   | A9         | 9AA       | A       | A9          | null           | A9 9      | AA      |
+| A99 9AA  | A99        | 9AA       | A       | A99         | null           | A99 9     | AA      |
+| AA9 9AA  | AA9        | 9AA       | AA      | AA9         | null           | AA9 9     | AA      |
+| AA99 9AA | AA99       | 9AA       | AA      | AA99        | null           | AA99 9    | AA      |
+
+### Misc. Class Methods include
 
 ```
 Postcode.validOutcode(outcode)
@@ -74,7 +85,7 @@ The postcode sector is made up of the postcode district, the single space, and t
 
 ### Unit
 
-The postcode unit is two characters added to the end of the postcode sector. Each postcode unit generally represents a street, part of a street, a single address, a group of properties, a single property, a sub-section of the property, an individual organisation or (for instance Driver and Vehicle Licensing Agency) a subsection of the organisation. The level of discrimination is often based on the amount of mail received by the premises or business. Examples of postcode units include "SW1W 0NY", "PO16 7GZ", "GU16 7HF", or "L1 8JQ".
+The postcode unit is two characters added to the end of the postcode sector. Each postcode unit generally represents a street, part of a street, a single address, a group of properties, a single property, a sub-section of the property, an individual organisation or (for instance Driver and Vehicle Licensing Agency) a subsection of the organisation. The level of discrimination is often based on the amount of mail received by the premises or business. Examples of postcode units include "NY" (from "SW1W 0NY"), "GZ" (from "PO16 7GZ"), "HF" (from "GU16 7HF"), or "JQ" (from "L1 8JQ").
 
 Sources:
 

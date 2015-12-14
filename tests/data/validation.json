@@ -37,6 +37,18 @@
 			"expected" : true
 		},
 		{
+			"base" : "EH1 JS",
+			"expected" : false
+		},
+		{
+			"base" : "EH1JS",
+			"expected" : false
+		},
+		{
+			"base" : "EH 1JS",
+			"expected" : false
+		},
+		{
 			"base" : "BT35 8GE",
 			"expected" : true
 		}

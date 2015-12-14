@@ -1,6 +1,6 @@
 {
   "name": "postcode",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "UK Postcode helper methods",
   "main": "index.js",
   "directories": {
