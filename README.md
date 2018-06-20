@@ -1,4 +1,4 @@
-# Postcode.js [![Build Status](https://travis-ci.org/ideal-postcodes/postcode.js.svg)](https://travis-ci.org/ideal-postcodes/postcode.js)
+# Postcode.js [![Build Status](https://travis-ci.org/ideal-postcodes/postcode.js.svg)](https://travis-ci.org/ideal-postcodes/postcode.js) [![Greenkeeper badge](https://badges.greenkeeper.io/ideal-postcodes/postcode.js.svg)](https://greenkeeper.io/)
 
 Utility methods for UK Postcodes.
 
