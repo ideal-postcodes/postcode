@@ -9,9 +9,9 @@
   "dependencies": {
   },
   "devDependencies": {
-    "mocha": "~1.17.0",
-    "csv": "~0.3.6",
-    "chai": "~1.8.1"
+    "mocha": "~5.2.0",
+    "csv": "~3.1.0",
+    "chai": "~4.1.2"
   },
   "scripts": {
     "test": "mocha tests/"
