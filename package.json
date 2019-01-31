@@ -11,7 +11,7 @@
   "devDependencies": {
     "mocha": "~1.17.0",
     "csv": "~0.3.6",
-    "chai": "~1.8.1"
+    "chai": "~4.2.0"
   },
   "scripts": {
     "test": "mocha tests/"
