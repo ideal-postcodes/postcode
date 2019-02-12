@@ -13,6 +13,7 @@
     "prettier": "~1.16.4"
   },
   "files": ["index.js"],
+  "runkitExampleFilename": "example.js",
   "nyc": {
     "include": [
       "index.js"
