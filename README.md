@@ -1,8 +1,8 @@
-[![CircleCI](https://circleci.com/gh/ideal-postcodes/postcode.js.svg?style=svg)](https://circleci.com/gh/ideal-postcodes/postcode.js) [![Coverage Status](https://coveralls.io/repos/github/ideal-postcodes/postcode.js/badge.svg?branch=master)](https://coveralls.io/github/ideal-postcodes/postcode.js?branch=master) ![Dependencies](https://img.shields.io/david/ideal-postcodes/postcode.js.svg?style=flat) ![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)
+[![CircleCI](https://circleci.com/gh/ideal-postcodes/postcode.svg?style=svg)](https://circleci.com/gh/ideal-postcodes/postcode) [![Coverage Status](https://coveralls.io/repos/github/ideal-postcodes/postcode/badge.svg?branch=master)](https://coveralls.io/github/ideal-postcodes/postcode?branch=master) ![Dependencies](https://img.shields.io/david/ideal-postcodes/postcode.svg?style=flat) ![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)
 
-# Postcode.js
+# Postcode
 
-[![Try postcode.js on RunKit](https://badge.runkitcdn.com/postcode.svg)](https://npm.runkit.com/postcode)
+[![Try postcode on RunKit](https://badge.runkitcdn.com/postcode.svg)](https://npm.runkit.com/postcode)
 
 Utility methods for UK Postcodes.
 
