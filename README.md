@@ -2,6 +2,8 @@
 
 # Postcode.js
 
+[![Try postcode.js on RunKit](https://badge.runkitcdn.com/postcode.svg)](https://npm.runkit.com/postcode)
+
 Utility methods for UK Postcodes.
 
 Included is a test suite that tests against all postcodes listed in the Ordnance Survey's postcode dataset as of January 2014.
