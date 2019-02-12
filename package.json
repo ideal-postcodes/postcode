@@ -6,15 +6,16 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
+  "prettier": {},
   "devDependencies": {
-    "mocha": "~1.17.0",
-    "csv": "~0.3.6",
-    "chai": "~4.2.0"
+    "chai": "~4.2.0",
+    "csv": "~5.1.1",
+    "mocha": "~5.2.0",
+    "prettier": "~1.16.4"
   },
   "scripts": {
-    "test": "mocha tests/"
+    "test": "node_modules/.bin/mocha tests/ --exit"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
     "validation",
     "parsing"
   ],
-  "author": "Chris Blanchard",
+  "author": "Ideal Postcodes",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ideal-postcodes/postcode.js/issues"
