@@ -1,11 +1,8 @@
 {
   "name": "postcode",
-  "version": "0.2.5",
+  "version": "1.0.0",
   "description": "UK Postcode helper methods",
   "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
