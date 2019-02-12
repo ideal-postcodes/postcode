@@ -1,4 +1,6 @@
-# Postcode.js [![Build Status](https://travis-ci.org/ideal-postcodes/postcode.js.svg)](https://travis-ci.org/ideal-postcodes/postcode.js)
+[![CircleCI](https://circleci.com/gh/ideal-postcodes/postcode.js.svg?style=svg)](https://circleci.com/gh/ideal-postcodes/postcode.js) [![Coverage Status](https://coveralls.io/repos/github/ideal-postcodes/postcode.js/badge.svg?branch=master)](https://coveralls.io/github/ideal-postcodes/postcode.js?branch=master) ![Dependencies](https://img.shields.io/david/ideal-postcodes/postcode.js.svg?style=flat) ![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)
+
+# Postcode.js
 
 Utility methods for UK Postcodes.
 
@@ -11,9 +13,9 @@ Install with `npm install postcode`
 Create an instance of Postcode to perform utility methods, like so
 
 ```javascript
-var Postcode = require("postcode");
+const Postcode = require("postcode");
 
-var postcode = new Postcode("ec1v9lb");
+const postcode = new Postcode("ec1v9lb");
 ```
 
 Perform simple validations, parsing and normalisation
