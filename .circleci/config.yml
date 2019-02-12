@@ -1,21 +1,5 @@
 version: 2
 jobs:
-   node6:
-     docker:
-       - image: circleci/node:6
-     steps:
-       - checkout
-       - restore_cache:
-           keys:
-             - npm-deps-{{ checksum "package.json" }}
-       - run: npm install
-       - save_cache:
-           key: npm-deps-{{ checksum "package.json" }}
-           paths:
-             - node_modules/
-       - run: npm test
-       - run: npm run coverage
-
    node8:
      docker:
        - image: circleci/node:8
@@ -50,9 +34,8 @@ jobs:
        
 workflows:
   version: 2
-  node6_node8_node10:
+  nodes:
     jobs:
-      - node6
       - node8
       - node10
        
