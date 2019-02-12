@@ -12,10 +12,23 @@
     "chai": "~4.2.0",
     "csv": "~5.1.1",
     "mocha": "~5.2.0",
+    "nyc": "~13.2.0",
     "prettier": "~1.16.4"
   },
+  "files": ["index.js"],
+  "nyc": {
+    "include": [
+      "index.js"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "all": true
+  }, 
   "scripts": {
-    "test": "node_modules/.bin/mocha tests/ --exit"
+    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha tests/ --exit",
+    "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,6 @@ jobs:
    node6:
      docker:
        - image: circleci/node:6
-     
      steps:
        - checkout
        - restore_cache:
@@ -15,12 +14,11 @@ jobs:
            paths:
              - node_modules/
        - run: npm test
-       
+       - run: npm run coverage
 
    node8:
      docker:
        - image: circleci/node:8
-     
      steps:
        - checkout
        - restore_cache:
@@ -32,11 +30,11 @@ jobs:
            paths:
              - node_modules/
        - run: npm test
+       - run: npm run coverage
 
    node10:
      docker:
        - image: circleci/node:10
-     
      steps:
        - checkout
        - restore_cache:
@@ -48,6 +46,7 @@ jobs:
            paths:
              - node_modules/
        - run: npm test
+       - run: npm run coverage
        
 workflows:
   version: 2
