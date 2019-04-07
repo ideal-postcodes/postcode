@@ -6,12 +6,32 @@
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
+    "@cablanchard/tsconfig": "0.0.1",
+    "@cablanchard/tslint": "0.0.1",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
     "csv": "~5.1.1",
     "mocha": "~6.0.0",
     "nyc": "~13.3.0",
-    "prettier": "~1.16.4"
+    "prettier": "~1.16.4",
+    "source-map-support": "^0.5.11",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
+  },
+  "mocha": {
+    "extension": [
+      "js",
+      "ts"
+    ],
+    "exit": true,
+    "fullTrace": true,
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ]
   },
   "files": [
     "index.js"
@@ -28,7 +48,7 @@
     "all": true
   },
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha tests/ --exit",
+    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
     "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
   },
   "repository": {
