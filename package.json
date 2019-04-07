@@ -61,7 +61,11 @@
     "validation",
     "parsing"
   ],
-  "author": "Ideal Postcodes",
+  "author": {
+    "name": "Ideal Postcodes",
+    "url": "https://ideal-postcodes.co.uk",
+    "email": "support@ideal-postcodes.co.uk"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ideal-postcodes/postcode/issues"
