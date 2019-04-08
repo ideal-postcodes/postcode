@@ -1,0 +1,9 @@
+{
+  "extends": "@cablanchard/tsconfig",
+  "compilerOptions": {
+    "lib": ["ES6"],
+    "strict": false,
+    "outFile": "dist/index.js"
+  },
+  "include": ["lib/**/*"]
+}

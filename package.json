@@ -2,7 +2,8 @@
   "name": "postcode",
   "version": "1.0.1",
   "description": "UK Postcode helper methods",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
@@ -35,7 +36,8 @@
     ]
   },
   "files": [
-    "index.js"
+    "dist",
+    "example.js"
   ],
   "runkitExampleFilename": "example.js",
   "nyc": {

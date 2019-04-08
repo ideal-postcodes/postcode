@@ -9,7 +9,7 @@ import { createGunzip } from "zlib";
 const TIMEOUT = 60000;
 const PC_LENGTH = 7;
 
-import Postcode from "../index";
+import Postcode from "../lib/index";
 
 describe("Exhaustive postcode test", () => {
   const testData = [];

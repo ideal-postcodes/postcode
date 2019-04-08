@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { readFile } from "fs";
 import { join } from "path";
-import Postcode from "../index";
+import Postcode from "../lib/index";
 
 const dataDir = join(__dirname, "/data");
 
