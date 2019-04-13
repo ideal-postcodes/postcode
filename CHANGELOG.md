@@ -2,6 +2,13 @@
 
 Any changes, including backwards incompatible changes will be listed here
 
+## 1.1.0 (12/02/2019)
+
+- Ported to typescript (now exports typings)
+- New methods (cleaner instance methods, more static methods)
+- Updated documentation
+- Added benchmarks
+
 ## 1.0.1 (12/02/2019)
 
 - Add runkit example
