@@ -7,6 +7,7 @@
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
+    "@types/csv-parse": "~1.1.12",
     "@cablanchard/tsconfig": "0.0.1",
     "@cablanchard/tslint": "0.0.1",
     "@types/chai": "~4.1.7",
@@ -14,7 +15,7 @@
     "@types/node": "~11.13.0",
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
-    "csv": "~5.1.1",
+    "csv-parse": "~4.4.0",
     "mocha": "~6.0.0",
     "nyc": "~13.3.0",
     "prettier": "~1.16.4",
@@ -53,6 +54,7 @@
   "scripts": {
     "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
     "lint": "node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
+    "build": "./node_modules/.bin/tsc",
     "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
   },
   "repository": {
