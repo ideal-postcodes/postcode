@@ -28,9 +28,19 @@ const loadFixtures = (fileName: string): Promise<TestFixtures> => {
   });
 };
 
+type Method =
+  | "normalise"
+  | "incode"
+  | "outcode"
+  | "area"
+  | "district"
+  | "unit"
+  | "sector"
+  | "subDistrict";
+
 interface TestMethodOptions {
   tests: TestCase[];
-  method: string;
+  method: Method;
 }
 
 const testMethod = (options: TestMethodOptions): void => {
@@ -45,7 +55,10 @@ const testMethod = (options: TestMethodOptions): void => {
 describe("Postcode#Valid", async () => {
   it("should return true for postcodes that look correct", async () => {
     const { tests } = await loadFixtures("validation.json");
-    testMethod({ method: "valid", tests });
+    tests.forEach(({ base, expected }) => {
+      const p = new Postcode(base);
+      assert.equal(p.valid(), Boolean(expected));
+    });
   });
 });
 

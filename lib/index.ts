@@ -1,15 +1,15 @@
-export default class Postcode {
+class Postcode {
   private _raw: string;
   private _valid: boolean;
-  private _incode: string | void;
-  private _outcode: string | void;
-  private _area: string | void;
-  private _unit: string | void;
-  private _district: string | void;
-  private _subDistrict: string | void;
-  private _sector: string | void;
+  private _incode?: string | null;
+  private _outcode?: string | null;
+  private _area?: string | null;
+  private _unit?: string | null;
+  private _district?: string | null;
+  private _subDistrict?: string | null;
+  private _sector?: string | null;
 
-  constructor(postcode) {
+  constructor(postcode: string) {
     this._raw = postcode;
     this._valid = isValidPostcode(postcode);
   }
@@ -25,21 +25,21 @@ export default class Postcode {
   incode(): string | null {
     if (!this._valid) return null;
     if (this._incode) return this._incode;
-    this._incode = parseIncode(this._raw).toUpperCase();
+    this._incode = nullOrUpperCase(parseIncode(this._raw));
     return this._incode;
   }
 
   outcode(): string | null {
     if (!this._valid) return null;
     if (this._outcode) return this._outcode;
-    this._outcode = parseOutcode(this._raw).toUpperCase();
+    this._outcode = nullOrUpperCase(parseOutcode(this._raw));
     return this._outcode;
   }
 
   area(): string | null {
     if (!this._valid) return null;
     if (this._area) return this._area;
-    this._area = parseArea(this._raw).toUpperCase();
+    this._area = nullOrUpperCase(parseArea(this._raw));
     return this._area;
   }
 
@@ -47,9 +47,9 @@ export default class Postcode {
     if (!this._valid) return null;
     if (this._district) return this._district;
     const outcode = this.outcode();
-    if (outcode === undefined) return null;
+    if (outcode === null) return null;
     const split = outcode.match(districtSplitRegex);
-    this._district = split ? split[1] : outcode;
+    this._district = split !== null ? split[1] : outcode;
     return this._district;
   }
 
@@ -57,22 +57,24 @@ export default class Postcode {
     if (!this._valid) return null;
     if (this._subDistrict) return this._subDistrict;
     const outcode = this.outcode();
+    if (outcode === null) return null;
     const split = outcode.match(districtSplitRegex);
-    this._subDistrict = split ? outcode : null;
+    this._subDistrict = split !== null ? outcode : null;
     return this._subDistrict;
   }
 
   sector(): string | null {
-    if (!this._valid) return null;
     if (this._sector) return this._sector;
-    this._sector = parseSector(this.normalise()).toUpperCase();
+    const normalised = this.normalise();
+    if (normalised === null) return null;
+    this._sector = parseSector(normalised);
     return this._sector;
   }
 
   unit(): string | null {
     if (!this._valid) return null;
     if (this._unit) return this._unit;
-    this._unit = parseUnit(this._raw).toUpperCase();
+    this._unit = nullOrUpperCase(parseUnit(this._raw));
     return this._unit;
   }
 
@@ -98,22 +100,38 @@ const isValidPostcode: Validator = postcode =>
   postcode.match(validationRegex) !== null;
 
 interface Parser {
-  (postcode: string): string;
+  (postcode: string): string | null;
 }
 const parseOutcode: Parser = postcode => {
   return postcode.replace(incodeRegex, "").replace(/\s+/, "");
 };
 
 const parseIncode: Parser = postcode => {
-  return postcode.match(incodeRegex)[0];
+  const match = postcode.match(incodeRegex);
+  if (match === null) return null;
+  return match[0];
 };
 
 const parseArea: Parser = postcode => {
-  return postcode.match(areaRegex)[0];
+  const match = postcode.match(areaRegex);
+  if (match === null) return null;
+  return match[0];
 };
 
 const parseSector: Parser = postcode => {
-  return postcode.match(sectorRegex)[0];
+  const match = postcode.match(sectorRegex);
+  if (match === null) return null;
+  return match[0];
 };
 
-const parseUnit: Parser = postcode => postcode.match(unitRegex)[0];
+const parseUnit: Parser = postcode => {
+  const match = postcode.match(unitRegex);
+  if (match === null) return null;
+  return match[0];
+};
+
+const nullOrUpperCase = (s: string | null): string | null => {
+  return s === null ? null : s.toUpperCase();
+};
+
+export = Postcode;

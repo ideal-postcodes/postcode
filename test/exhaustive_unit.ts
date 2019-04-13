@@ -2,7 +2,7 @@
 
 import { assert } from "chai";
 import { createReadStream } from "fs";
-import { parse } from "csv";
+import parse from "csv-parse";
 import { resolve } from "path";
 import { createGunzip } from "zlib";
 
@@ -11,8 +11,10 @@ const PC_LENGTH = 7;
 
 import Postcode from "../lib/index";
 
+type CsvRecord = [string];
+
 describe("Exhaustive postcode test", () => {
-  const testData = [];
+  const testData: string[] = [];
 
   before(function(done) {
     this.timeout(TIMEOUT);
@@ -23,7 +25,7 @@ describe("Exhaustive postcode test", () => {
     createReadStream(inputFile)
       .pipe(createGunzip())
       .pipe(parse({ delimiter: "," }))
-      .on("data", data => testData.push(data[0]))
+      .on("data", (data: CsvRecord) => testData.push(data[0]))
       .on("error", done)
       .on("end", done);
   });
@@ -81,7 +83,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.incode(), unspacedPostcode.incode());
         } else {
           // Any space indicates incode/outcode
-          const testIncode = postcode.match(/.*\s/)[0].replace(/\s/, "");
+          const match = postcode.match(/.*\s/);
+          if (match === null) throw new Error("null detected");
+          const testIncode = match[0].replace(/\s/, "");
           assert.equal(p.incode(), testIncode);
           assert.equal(downcasePostcode.incode(), testIncode);
           assert.equal(unspacedPostcode.incode(), testIncode);
@@ -104,7 +108,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.outcode(), unspacedPostcode.outcode());
         } else {
           // Any space indicates incode/outcode
-          const testIncode = postcode.match(/\s.*/)[0].replace(/\s/, "");
+          const match = postcode.match(/\s.*/);
+          if (match === null) throw new Error("null detected");
+          const testIncode = match[0].replace(/\s/, "");
           assert.equal(p.outcode(), testIncode);
           assert.equal(downcasePostcode.outcode(), testIncode);
           assert.equal(unspacedPostcode.outcode(), testIncode);
@@ -126,7 +132,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.area(), unspacedPostcode.area());
         } else {
           // Any space indicates incode/outcode
-          const testArea = postcode.match(/\s.*/)[0].replace(/\s/, "");
+          const match = postcode.match(/\s.*/);
+          if (match === null) throw new Error("null detected");
+          const testArea = match[0].replace(/\s/, "");
           assert.equal(p.area(), testArea);
           assert.equal(downcasePostcode.area(), testArea);
           assert.equal(unspacedPostcode.area(), testArea);
@@ -148,7 +156,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.district(), unspacedPostcode.district());
         } else {
           // Any space indicates incode/outcode
-          const testDistrict = postcode.match(/\s.*/)[0].replace(/\s/, "");
+          const match = postcode.match(/\s.*/);
+          if (match === null) throw new Error("null detected");
+          const testDistrict = match[0].replace(/\s/, "");
           assert.equal(p.district(), testDistrict);
           assert.equal(downcasePostcode.district(), testDistrict);
           assert.equal(unspacedPostcode.district(), testDistrict);
@@ -170,7 +180,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.subDistrict(), unspacedPostcode.subDistrict());
         } else {
           // Any space indicates incode/outcode
-          const testSubDistrict = postcode.match(/\s.*/)[0].replace(/\s/, "");
+          const match = postcode.match(/\s.*/);
+          if (match === null) throw new Error("null detected");
+          const testSubDistrict = match[0].replace(/\s/, "");
           assert.equal(p.subDistrict(), testSubDistrict);
           assert.equal(downcasePostcode.subDistrict(), testSubDistrict);
           assert.equal(unspacedPostcode.subDistrict(), testSubDistrict);
@@ -192,7 +204,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.sector(), unspacedPostcode.sector());
         } else {
           // Any space indicates incode/outcode
-          const testSector = postcode.match(/\s.*/)[0].replace(/\s/, "");
+          const match = postcode.match(/\s.*/);
+          if (match === null) throw new Error("null detected");
+          const testSector = match[0].replace(/\s/, "");
           assert.equal(p.sector(), testSector);
           assert.equal(downcasePostcode.sector(), testSector);
           assert.equal(unspacedPostcode.sector(), testSector);
@@ -214,7 +228,9 @@ describe("Exhaustive postcode test", () => {
           assert.equal(p.unit(), unspacedPostcode.unit());
         } else {
           // Any space indicates incode/outcode
-          const testUnit = postcode.match(/\s.*/)[0].replace(/\s/, "");
+          const match = postcode.match(/\s.*/);
+          if (match === null) throw new Error("null detected");
+          const testUnit = match[0].replace(/\s/, "");
           assert.equal(p.unit(), testUnit);
           assert.equal(downcasePostcode.unit(), testUnit);
           assert.equal(unspacedPostcode.unit(), testUnit);
