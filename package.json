@@ -7,10 +7,10 @@
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
-    "@types/csv-parse": "~1.1.12",
     "@cablanchard/tsconfig": "0.0.1",
     "@cablanchard/tslint": "0.0.1",
     "@types/chai": "~4.1.7",
+    "@types/csv-parse": "~1.1.12",
     "@types/mocha": "~5.2.6",
     "@types/node": "~11.13.0",
     "chai": "~4.2.0",
@@ -22,6 +22,7 @@
     "source-map-support": "~0.5.11",
     "ts-node": "~8.0.3",
     "tslint": "~5.15.0",
+    "typedoc": "~0.14.2",
     "typescript": "~3.4.2"
   },
   "mocha": {
@@ -54,6 +55,7 @@
   "scripts": {
     "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
     "lint": "node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
+    "docs": "./node_modules/.bin/typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
     "build": "./node_modules/.bin/tsc",
     "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
   },
