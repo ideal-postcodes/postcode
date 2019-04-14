@@ -2,12 +2,15 @@
 
 Any changes, including backwards incompatible changes will be listed here
 
-## 1.1.0 (12/02/2019)
+## 2.0.0 (12/02/2019)
 
+- *Breaking Change*: Require minimum node.js of 8.0.0
 - Ported to typescript (now exports typings)
-- New methods (cleaner instance methods, more static methods)
+- Provides a cleaner, more modern API to extract and parse while supporting old methods
+  - Add static methods to extract single datapoints
+  - Add a ValidPostcode class with accessor methods which can be destructured
 - Updated documentation
-- Added benchmarks
+- Added benchmarking
 
 ## 1.0.1 (12/02/2019)
 
