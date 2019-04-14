@@ -1,32 +1,6 @@
 import { assert } from "chai";
-import { readFile } from "fs";
-import { join } from "path";
 import Postcode from "../lib/index";
-
-const dataDir = join(__dirname, "/data");
-
-interface TestFixtures {
-  tests: TestCase[];
-}
-
-interface TestCase {
-  base: string;
-  expected: string;
-}
-
-const loadFixtures = (fileName: string): Promise<TestFixtures> => {
-  return new Promise((resolve, reject) => {
-    const filePath = join(dataDir, fileName);
-    readFile(filePath, { encoding: "utf8" }, (error, data) => {
-      if (error) return reject(error);
-      try {
-        resolve(JSON.parse(data.toString()));
-      } catch (error) {
-        return reject(error);
-      }
-    });
-  });
-};
+import { loadFixtures, TestCase } from "./util/helper";
 
 type Method =
   | "normalise"
