@@ -130,8 +130,8 @@ const DISTRICT_SPLIT_REGEX = /^([a-z]{1,2}\d)([a-z])$/i;
  * @example
  *
  * ```
- * toDistrict("AA9") // => "AA9"
- * toDistrict("A9A") // => "A9"
+ * toDistrict("AA9 9AA") // => "AA9"
+ * toDistrict("A9A 9AA") // => "A9"
  * ```
  */
 const toDistrict: Parser = postcode => {
@@ -140,6 +140,29 @@ const toDistrict: Parser = postcode => {
   const match = outcode.match(DISTRICT_SPLIT_REGEX);
   if (match === null) return outcode;
   return match[1];
+};
+
+/**
+ * Returns a correctly formatted subdistrict given a postcode
+ *
+ * Returns null if no subdistrict is available on valid postcode
+ * Returns null if invalid postcode
+ *
+ * @example
+ *
+ * ```
+ * toSubDistrict("AA9A 9AA") // => "AA9A"
+ * toSubDistrict("A9A 9AA") // => "A9A"
+ * toSubDistrict("AA9 9AA") // => null
+ * toSubDistrict("A9 9AA") // => null
+ * ```
+ */
+const toSubDistrict: Parser = postcode => {
+  const outcode = toOutcode(postcode);
+  if (outcode === null) return null;
+  const split = outcode.match(DISTRICT_SPLIT_REGEX);
+  if (split === null) return null;
+  return outcode;
 };
 
 const returnNull = () => null;
@@ -190,6 +213,7 @@ class Postcode {
   static toSector = toSector;
   static toUnit = toUnit;
   static toDistrict = toDistrict;
+  static toSubDistrict = toSubDistrict;
 
   static validOutcode(outcode: string): boolean {
     return outcode.match(validOutcodeRegex) !== null;
@@ -223,12 +247,8 @@ class Postcode {
   }
 
   subDistrict(): string | null {
-    if (!this._valid) return null;
     if (this._subDistrict) return this._subDistrict;
-    const outcode = this.outcode();
-    if (outcode === null) return null;
-    const split = outcode.match(DISTRICT_SPLIT_REGEX);
-    this._subDistrict = split !== null ? outcode : null;
+    this._subDistrict = toSubDistrict(this._raw);
     return this._subDistrict;
   }
 
