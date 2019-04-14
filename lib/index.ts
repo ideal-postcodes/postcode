@@ -225,20 +225,17 @@ class Postcode {
 
   incode(): string | null {
     if (this._incode) return this._incode;
-    this._incode = toIncode(this._raw);
-    return this._incode;
+    return (this._incode = toIncode(this._raw));
   }
 
   outcode(): string | null {
     if (this._outcode) return this._outcode;
-    this._outcode = toOutcode(this._raw);
-    return this._outcode;
+    return (this._outcode = toOutcode(this._raw));
   }
 
   area(): string | null {
     if (this._area) return this._area;
-    this._area = toArea(this._raw);
-    return this._area;
+    return (this._area = toArea(this._raw));
   }
 
   district(): string | null {
@@ -248,20 +245,17 @@ class Postcode {
 
   subDistrict(): string | null {
     if (this._subDistrict) return this._subDistrict;
-    this._subDistrict = toSubDistrict(this._raw);
-    return this._subDistrict;
+    return (this._subDistrict = toSubDistrict(this._raw));
   }
 
   sector(): string | null {
     if (this._sector) return this._sector;
-    this._sector = toSector(this._raw);
-    return this._sector;
+    return (this._sector = toSector(this._raw));
   }
 
   unit(): string | null {
     if (this._unit) return this._unit;
-    this._unit = toUnit(this._raw);
-    return this._unit;
+    return (this._unit = toUnit(this._raw));
   }
 
   normalise(): string | null {
