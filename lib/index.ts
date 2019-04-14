@@ -121,6 +121,8 @@ const toUnit: Parser = postcode => {
   return firstOrNull(match);
 };
 
+const returnNull = () => null;
+
 /**
  * Postcode
  *
@@ -145,6 +147,18 @@ class Postcode {
   constructor(postcode: string) {
     this._raw = postcode;
     this._valid = isValid(postcode);
+
+    // All parse methods should return null if invalid
+    if (!this._valid) {
+      this.incode = returnNull;
+      this.outcode = returnNull;
+      this.area = returnNull;
+      this.district = returnNull;
+      this.subDistrict = returnNull;
+      this.sector = returnNull;
+      this.unit = returnNull;
+      this.normalise = returnNull;
+    }
   }
 
   static isValid = isValid;
@@ -164,21 +178,18 @@ class Postcode {
   }
 
   incode(): string | null {
-    if (!this._valid) return null;
     if (this._incode) return this._incode;
     this._incode = toIncode(this._raw);
     return this._incode;
   }
 
   outcode(): string | null {
-    if (!this._valid) return null;
     if (this._outcode) return this._outcode;
     this._outcode = toOutcode(this._raw);
     return this._outcode;
   }
 
   area(): string | null {
-    if (!this._valid) return null;
     if (this._area) return this._area;
     this._area = toArea(this._raw);
     return this._area;
@@ -206,21 +217,17 @@ class Postcode {
 
   sector(): string | null {
     if (this._sector) return this._sector;
-    const normalised = this.normalise();
-    if (normalised === null) return null;
-    this._sector = toSector(normalised);
+    this._sector = toSector(this._raw);
     return this._sector;
   }
 
   unit(): string | null {
-    if (!this._valid) return null;
     if (this._unit) return this._unit;
     this._unit = toUnit(this._raw);
     return this._unit;
   }
 
   normalise(): string | null {
-    if (!this._valid) return null;
     return `${this.outcode()} ${this.incode()}`;
   }
 }
