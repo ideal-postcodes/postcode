@@ -72,16 +72,16 @@ describe("Postcode.toArea", () => {
   });
 });
 
-// describe("Postcode.toDistrict", () => {
-//   it("should correctly parse districts", async () => {
-//     const { tests } = await loadFixtures("districts.json");
-//     testMethod({ method: Postcode.toDistrict, tests });
-//   });
+describe("Postcode.toDistrict", () => {
+  it("should correctly parse districts", async () => {
+    const { tests } = await loadFixtures("districts.json");
+    testMethod({ method: Postcode.toDistrict, tests });
+  });
 
-//   it("should return undefined if invalid postcode", () => {
-//     assert.isNull(Postcode.toDistrict("Definitely bogus"));
-//   });
-// });
+  it("should return undefined if invalid postcode", () => {
+    assert.isNull(Postcode.toDistrict("Definitely bogus"));
+  });
+});
 
 // describe("Postcode.toSubDistrict", () => {
 //   it("should correctly parse sub-districts", async () => {

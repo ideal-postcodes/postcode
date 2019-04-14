@@ -29,7 +29,6 @@ const matchOn = (s: string, regex: RegExp): RegExpMatchArray | null => {
 
 const incodeRegex = /\d[a-z]{2}$/i;
 const validOutcodeRegex = /^[a-z]{1,2}\d[a-z\d]?$/i;
-const districtSplitRegex = /^([a-z]{1,2}\d)([a-z])$/i;
 const VALIDATION_REGEX = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
 
 /**
@@ -121,6 +120,28 @@ const toUnit: Parser = postcode => {
   return firstOrNull(match);
 };
 
+const DISTRICT_SPLIT_REGEX = /^([a-z]{1,2}\d)([a-z])$/i;
+
+/**
+ * Returns a correctly formatted district given a postcode
+ *
+ * Returns null if invalid postcode
+ *
+ * @example
+ *
+ * ```
+ * toDistrict("AA9") // => "AA9"
+ * toDistrict("A9A") // => "A9"
+ * ```
+ */
+const toDistrict: Parser = postcode => {
+  const outcode = toOutcode(postcode);
+  if (outcode === null) return null;
+  const match = outcode.match(DISTRICT_SPLIT_REGEX);
+  if (match === null) return outcode;
+  return match[1];
+};
+
 const returnNull = () => null;
 
 /**
@@ -168,6 +189,7 @@ class Postcode {
   static toArea = toArea;
   static toSector = toSector;
   static toUnit = toUnit;
+  static toDistrict = toDistrict;
 
   static validOutcode(outcode: string): boolean {
     return outcode.match(validOutcodeRegex) !== null;
@@ -196,13 +218,8 @@ class Postcode {
   }
 
   district(): string | null {
-    if (!this._valid) return null;
     if (this._district) return this._district;
-    const outcode = this.outcode();
-    if (outcode === null) return null;
-    const split = outcode.match(districtSplitRegex);
-    this._district = split !== null ? split[1] : outcode;
-    return this._district;
+    return (this._district = toDistrict(this._raw));
   }
 
   subDistrict(): string | null {
@@ -210,7 +227,7 @@ class Postcode {
     if (this._subDistrict) return this._subDistrict;
     const outcode = this.outcode();
     if (outcode === null) return null;
-    const split = outcode.match(districtSplitRegex);
+    const split = outcode.match(DISTRICT_SPLIT_REGEX);
     this._subDistrict = split !== null ? outcode : null;
     return this._subDistrict;
   }
