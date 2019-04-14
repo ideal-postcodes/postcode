@@ -66,21 +66,21 @@ const {
   sector,      // => "SW1A 2"
   subDistrict, // => "SW1A"
   valid,       // => true
-} = Postcode.parse("Sw1A 2aa  ");
+} = Postcode.parse("Sw1A     2aa");
 ```
 
 #### Invalid postcode
 
 ```
 const {
-  normalised,  // => undefined
-  outcode,     // => undefined
-  incode,      // => undefined
-  area,        // => undefined
-  district,    // => undefined
-  unit,        // => undefined
-  sector,      // => undefined
-  subDistrict, // => undefined
+  normalised,  // => null
+  outcode,     // => null
+  incode,      // => null
+  area,        // => null
+  district,    // => null
+  unit,        // => null
+  sector,      // => null
+  subDistrict, // => null
   valid,       // => false
 } = Postcode.parse("    Oh no, ):   ");
 ```
@@ -91,10 +91,10 @@ const {
 |----------|----------|---------|-------|-----------|--------------|---------|-------|
 | AA9A 9AA | AA9A     | 9AA     | AA    | AA9       | AA9A         | AA9A 9  | AA    |
 | A9A 9AA  | A9A      | 9AA     | A     | A9        | A9A          | A9A 9   | AA    |
-| A9 9AA   | A9       | 9AA     | A     | A9        | `undefined`  | A9 9    | AA    |
-| A99 9AA  | A99      | 9AA     | A     | A99       | `undefined`  | A99 9   | AA    |
-| AA9 9AA  | AA9      | 9AA     | AA    | AA9       | `undefined`  | AA9 9   | AA    |
-| AA99 9AA | AA99     | 9AA     | AA    | AA99      | `undefined`  | AA99 9  | AA    |
+| A9 9AA   | A9       | 9AA     | A     | A9        | `null`       | A9 9    | AA    |
+| A99 9AA  | A99      | 9AA     | A     | A99       | `null`       | A99 9   | AA    |
+| AA9 9AA  | AA9      | 9AA     | AA    | AA9       | `null`       | AA9 9   | AA    |
+| AA99 9AA | AA99     | 9AA     | AA    | AA99      | `null`       | AA99 9  | AA    |
 
 ### Static Methods
 
