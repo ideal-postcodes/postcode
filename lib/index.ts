@@ -1,3 +1,136 @@
+interface Validator {
+  (input: string): boolean;
+}
+
+interface Parser {
+  (postcode: string): string | null;
+}
+
+/**
+ * Return first elem of input is RegExpMatchArray or null if input null
+ */
+const firstOrNull = (match: RegExpMatchArray | null): string | null => {
+  if (match === null) return null;
+  return match[0];
+};
+
+const SPACE_REGEX = /\s+/gi;
+
+/**
+ * Drop all spaces and uppercase
+ */
+const sanitize = (s: string): string => {
+  return s.replace(SPACE_REGEX, "").toUpperCase();
+};
+
+const matchOn = (s: string, regex: RegExp): RegExpMatchArray | null => {
+  return sanitize(s).match(regex);
+};
+
+const incodeRegex = /\d[a-z]{2}$/i;
+const validOutcodeRegex = /^[a-z]{1,2}\d[a-z\d]?$/i;
+const districtSplitRegex = /^([a-z]{1,2}\d)([a-z])$/i;
+const VALIDATION_REGEX = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
+
+/**
+ * Detects a "valid" postcode
+ * - Starts and ends on a non-space character
+ * - Any length of intervening space is allowed
+ * - Must conform to one of following schemas:
+ *  - AA1A 1AA
+ *  - A1A 1AA
+ *  - A1 1AA
+ *  - A99 9AA
+ *  - AA9 9AA
+ *  - AA99 9AA
+ */
+const isValid: Validator = postcode => {
+  return postcode.match(VALIDATION_REGEX) !== null;
+};
+
+/**
+ * Returns a normalised postcode string (i.e. uppercased and properly spaced)
+ *
+ * Returns null if invalid postcode
+ */
+const toNormalised: Parser = postcode => {
+  const outcode = toOutcode(postcode);
+  if (outcode === null) return null;
+  const incode = toIncode(postcode);
+  if (incode === null) return null;
+  return `${outcode} ${incode}`;
+};
+
+/**
+ * Returns a correctly formatted outcode given a postcode
+ *
+ * Returns null if invalid postcode
+ */
+const toOutcode: Parser = postcode => {
+  if (!isValid(postcode)) return null;
+  return sanitize(postcode).replace(incodeRegex, "");
+};
+
+/**
+ * Returns a correctly formatted incode given a postcode
+ *
+ * Returns null if invalid postcode
+ */
+const toIncode: Parser = postcode => {
+  if (!isValid(postcode)) return null;
+  const match = matchOn(postcode, incodeRegex);
+  return firstOrNull(match);
+};
+
+const AREA_REGEX = /^[a-z]{1,2}/i;
+
+/**
+ * Returns a correctly formatted area given a postcode
+ *
+ * Returns null if invalid postcode
+ */
+const toArea: Parser = postcode => {
+  if (!isValid(postcode)) return null;
+  const match = matchOn(postcode, AREA_REGEX);
+  return firstOrNull(match);
+};
+
+/**
+ * Returns a correctly formatted sector given a postcode
+ *
+ * Returns null if invalid postcode
+ */
+const toSector: Parser = postcode => {
+  const outcode = toOutcode(postcode);
+  if (outcode === null) return null;
+  const incode = toIncode(postcode);
+  if (incode === null) return null;
+  return `${outcode} ${incode[0]}`;
+};
+
+const UNIT_REGEX = /[a-z]{2}$/i;
+
+/**
+ * Returns a correctly formatted unit given a postcode
+ *
+ * Returns null if invalid postcode
+ */
+const toUnit: Parser = postcode => {
+  if (!isValid(postcode)) return null;
+  const match = matchOn(postcode, UNIT_REGEX);
+  return firstOrNull(match);
+};
+
+/**
+ * Postcode
+ *
+ * This wraps an input postcode string and provides instance methods to
+ * validate, normalise or extract postcode data.
+ *
+ * This API is a bit more cumbersome that it needs to be. You should
+ * favour `Postcode.parse()` or a static method depending on the
+ * task at hand.
+ */
 class Postcode {
   private _raw: string;
   private _valid: boolean;
@@ -11,8 +144,16 @@ class Postcode {
 
   constructor(postcode: string) {
     this._raw = postcode;
-    this._valid = isValidPostcode(postcode);
+    this._valid = isValid(postcode);
   }
+
+  static isValid = isValid;
+  static toNormalised = toNormalised;
+  static toOutcode = toOutcode;
+  static toIncode = toIncode;
+  static toArea = toArea;
+  static toSector = toSector;
+  static toUnit = toUnit;
 
   static validOutcode(outcode: string): boolean {
     return outcode.match(validOutcodeRegex) !== null;
@@ -25,21 +166,21 @@ class Postcode {
   incode(): string | null {
     if (!this._valid) return null;
     if (this._incode) return this._incode;
-    this._incode = nullOrUpperCase(parseIncode(this._raw));
+    this._incode = toIncode(this._raw);
     return this._incode;
   }
 
   outcode(): string | null {
     if (!this._valid) return null;
     if (this._outcode) return this._outcode;
-    this._outcode = nullOrUpperCase(parseOutcode(this._raw));
+    this._outcode = toOutcode(this._raw);
     return this._outcode;
   }
 
   area(): string | null {
     if (!this._valid) return null;
     if (this._area) return this._area;
-    this._area = nullOrUpperCase(parseArea(this._raw));
+    this._area = toArea(this._raw);
     return this._area;
   }
 
@@ -67,14 +208,14 @@ class Postcode {
     if (this._sector) return this._sector;
     const normalised = this.normalise();
     if (normalised === null) return null;
-    this._sector = parseSector(normalised);
+    this._sector = toSector(normalised);
     return this._sector;
   }
 
   unit(): string | null {
     if (!this._valid) return null;
     if (this._unit) return this._unit;
-    this._unit = nullOrUpperCase(parseUnit(this._raw));
+    this._unit = toUnit(this._raw);
     return this._unit;
   }
 
@@ -83,55 +224,5 @@ class Postcode {
     return `${this.outcode()} ${this.incode()}`;
   }
 }
-
-const validationRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
-const incodeRegex = /\d[a-z]{2}$/i;
-const validOutcodeRegex = /^[a-z]{1,2}\d[a-z\d]?$/i;
-const areaRegex = /^[a-z]{1,2}/i;
-const districtSplitRegex = /^([a-z]{1,2}\d)([a-z])$/i;
-const sectorRegex = /^[a-z]{1,2}\d[a-z\d]?\s*\d/i;
-const unitRegex = /[a-z]{2}$/i;
-
-interface Validator {
-  (input: string): boolean;
-}
-
-const isValidPostcode: Validator = postcode =>
-  postcode.match(validationRegex) !== null;
-
-interface Parser {
-  (postcode: string): string | null;
-}
-const parseOutcode: Parser = postcode => {
-  return postcode.replace(incodeRegex, "").replace(/\s+/, "");
-};
-
-const parseIncode: Parser = postcode => {
-  const match = postcode.match(incodeRegex);
-  if (match === null) return null;
-  return match[0];
-};
-
-const parseArea: Parser = postcode => {
-  const match = postcode.match(areaRegex);
-  if (match === null) return null;
-  return match[0];
-};
-
-const parseSector: Parser = postcode => {
-  const match = postcode.match(sectorRegex);
-  if (match === null) return null;
-  return match[0];
-};
-
-const parseUnit: Parser = postcode => {
-  const match = postcode.match(unitRegex);
-  if (match === null) return null;
-  return match[0];
-};
-
-const nullOrUpperCase = (s: string | null): string | null => {
-  return s === null ? null : s.toUpperCase();
-};
 
 export = Postcode;
