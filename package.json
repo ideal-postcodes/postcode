@@ -53,7 +53,7 @@
     "all": true
   },
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
+    "test": "npm run lint && NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
     "lint": "node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
     "docs": "./node_modules/.bin/typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
     "build": "./node_modules/.bin/tsc",
