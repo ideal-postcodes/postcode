@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://img.ideal-postcodes.co.uk/Postcode@2Ejs%20Logo@3x.png" alt="Postcode.js">
+  <img src="https://img.ideal-postcodes.co.uk/Postcode.js%20Logo@3x.png" alt="Postcode.js">
 </h1>
 
 > Validate & parse UK postcodes
