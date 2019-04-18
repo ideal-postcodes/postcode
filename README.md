@@ -17,17 +17,17 @@ Tested against ~1.7 million postcodes on ONSPD.
 
 ## Features
 
-- [Check](#Validate) whether a postcode conforms to the [correct format](https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Formatting)
-- [Extract](#Extract) useful elements of a postcode like incode, outcode, sector
-- [Single purpose static methods](#Static Methods)
+- [Check](#validate) whether a postcode conforms to the [correct format](https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Formatting)
+- [Extract](#extract) useful elements of a postcode like incode, outcode, sector
+- [Single purpose static methods](#static-methods)
 - Tested against a list of ~1.7 million postcodes listed on ONS Postcode Directory
 
 ## Links
 
 - [API Documentation](https://ideal-postcodes.github.io/postcode/)
 - [Try postcode.js on RunKit](https://npm.runkit.com/postcode)
-- [Postcode element definitions](#Definitions)
-- [Caveat on postcode validation](#Note on Postcode Validation)
+- [Postcode element definitions](#definitions)
+- [Caveat on postcode validation](#note-on-postcode-Validation)
 
 ## Getting Started
 
