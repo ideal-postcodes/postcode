@@ -21,6 +21,7 @@
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
     "csv-parse": "~4.4.0",
+    "install-npm-version": "~1.0.3",
     "mocha": "~6.0.0",
     "nyc": "~13.3.0",
     "prettier": "~1.16.4",
