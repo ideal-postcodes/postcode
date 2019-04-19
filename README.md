@@ -46,7 +46,7 @@ import Postcode from "postcode";
 ### Validate
 
 ```javascript
-Postcode.isValid("AA1 1AB"); # => true
+Postcode.isValid("AA1 1AB"); // => true
 ```
 
 ### Parse
