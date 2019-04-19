@@ -6,6 +6,74 @@ interface Parser {
   (postcode: string): string | null;
 }
 
+class ValidPostcode {
+  private instance: Postcode;
+
+  constructor(postcode: string) {
+    this.instance = new Postcode(postcode);
+  }
+
+  get valid(): boolean {
+    return this.instance.valid();
+  }
+
+  get postcode(): string {
+    return <string>this.instance.normalise();
+  }
+
+  get incode(): string {
+    return <string>this.instance.incode();
+  }
+
+  get outcode(): string {
+    return <string>this.instance.outcode();
+  }
+
+  get area(): string {
+    return <string>this.instance.area();
+  }
+
+  get district(): string {
+    return <string>this.instance.district();
+  }
+
+  get subDistrict(): string {
+    return <string>this.instance.subDistrict();
+  }
+
+  get sector(): string {
+    return <string>this.instance.sector();
+  }
+
+  get unit(): string {
+    return <string>this.instance.unit();
+  }
+}
+
+type InvalidPostcode = {
+  valid: false;
+  postcode: null;
+  incode: null;
+  outcode: null;
+  area: null;
+  district: null;
+  subDistrict: null;
+  sector: null;
+  unit: null;
+};
+
+const invalidPostcode: InvalidPostcode = Object.freeze({
+  valid: false,
+  postcode: null,
+  incode: null,
+  outcode: null,
+  area: null,
+  district: null,
+  subDistrict: null,
+  sector: null,
+  unit: null
+});
+
 /**
  * Return first elem of input is RegExpMatchArray or null if input null
  */
@@ -217,6 +285,11 @@ class Postcode {
 
   static validOutcode(outcode: string): boolean {
     return outcode.match(validOutcodeRegex) !== null;
+  }
+
+  static parse(postcode: string): ValidPostcode | InvalidPostcode {
+    if (isValid(postcode)) return new ValidPostcode(postcode);
+    return { ...invalidPostcode };
   }
 
   valid(): boolean {
