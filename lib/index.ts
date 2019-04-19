@@ -62,7 +62,7 @@ type InvalidPostcode = {
   unit: null;
 };
 
-const invalidPostcode: InvalidPostcode = Object.freeze({
+const invalidPostcode: InvalidPostcode = {
   valid: false,
   postcode: null,
   incode: null,
@@ -72,7 +72,7 @@ const invalidPostcode: InvalidPostcode = Object.freeze({
   subDistrict: null,
   sector: null,
   unit: null
-});
+};
 
 /**
  * Return first elem of input is RegExpMatchArray or null if input null

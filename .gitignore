@@ -1,3 +1,4 @@
+#
 # Logs
 logs
 *.log
@@ -59,4 +60,5 @@ dist
 .cache
 
 .DS_Store
+docs
 
