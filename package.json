@@ -12,10 +12,12 @@
   "devDependencies": {
     "@cablanchard/tsconfig": "0.0.1",
     "@cablanchard/tslint": "0.0.1",
+    "@types/benchmark": "~1.0.31",
     "@types/chai": "~4.1.7",
     "@types/csv-parse": "~1.1.12",
     "@types/mocha": "~5.2.6",
     "@types/node": "~11.13.0",
+    "benchmark": "~2.1.4",
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
     "csv-parse": "~4.4.0",
@@ -60,6 +62,7 @@
     "lint": "node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
     "docs": "./node_modules/.bin/typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
     "build": "./node_modules/.bin/tsc",
+    "benchmark": "npm run build && node benchmark.js",
     "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
   },
   "repository": {
