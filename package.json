@@ -1,20 +1,51 @@
 {
   "name": "postcode",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "UK Postcode helper methods",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
+    "@cablanchard/tsconfig": "0.0.1",
+    "@cablanchard/tslint": "0.0.1",
+    "@types/benchmark": "~1.0.31",
+    "@types/chai": "~4.1.7",
+    "@types/csv-parse": "~1.1.12",
+    "@types/mocha": "~5.2.6",
+    "@types/node": "~11.13.0",
+    "benchmark": "~2.1.4",
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
-    "csv": "~5.1.1",
+    "csv-parse": "~4.4.0",
+    "install-npm-version": "~1.0.3",
     "mocha": "~6.1.1",
     "nyc": "~14.0.0",
-    "prettier": "~1.17.0"
+    "prettier": "~1.17.0",
+    "source-map-support": "~0.5.11",
+    "ts-node": "~8.0.3",
+    "tslint": "~5.15.0",
+    "typedoc": "~0.14.2",
+    "typescript": "~3.4.2"
+  },
+  "mocha": {
+    "extension": [
+      "js",
+      "ts"
+    ],
+    "exit": true,
+    "fullTrace": true,
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ]
   },
   "files": [
-    "index.js"
+    "dist",
+    "example.js"
   ],
   "runkitExampleFilename": "example.js",
   "nyc": {
@@ -28,12 +59,17 @@
     "all": true
   },
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha tests/ --exit",
+    "test": "npm run lint && NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
+    "prepare": "npm test && npm run build",
+    "lint": "node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
+    "docs": "./node_modules/.bin/typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
+    "build": "./node_modules/.bin/tsc",
+    "benchmark": "npm run build && node benchmark.js",
     "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ideal-postcodes/postcode"
+    "url": "https://github.com/ideal-postcodes/postcode.git"
   },
   "keywords": [
     "uk",
@@ -41,7 +77,11 @@
     "validation",
     "parsing"
   ],
-  "author": "Ideal Postcodes",
+  "author": {
+    "name": "Ideal Postcodes",
+    "url": "https://ideal-postcodes.co.uk",
+    "email": "support@ideal-postcodes.co.uk"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ideal-postcodes/postcode/issues"

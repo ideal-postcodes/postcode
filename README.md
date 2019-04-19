@@ -1,18 +1,125 @@
-[![CircleCI](https://circleci.com/gh/ideal-postcodes/postcode.svg?style=svg)](https://circleci.com/gh/ideal-postcodes/postcode) [![Coverage Status](https://coveralls.io/repos/github/ideal-postcodes/postcode/badge.svg?branch=master)](https://coveralls.io/github/ideal-postcodes/postcode?branch=master) ![Dependencies](https://img.shields.io/david/ideal-postcodes/postcode.svg?style=flat) ![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)
+<h1 align="center">
+  <img src="https://img.ideal-postcodes.co.uk/Postcode.js%20Logo@3x.png" alt="Postcode.js">
+</h1>
 
-# Postcode
+> Validate & parse UK postcodes
 
+[![CircleCI](https://circleci.com/gh/ideal-postcodes/postcode.svg?style=svg)](https://circleci.com/gh/ideal-postcodes/postcode)
+[![Coverage Status](https://coveralls.io/repos/github/ideal-postcodes/postcode/badge.svg?branch=master)](https://coveralls.io/github/ideal-postcodes/postcode?branch=master) 
+![Dependencies](https://img.shields.io/david/ideal-postcodes/postcode.svg?style=flat)
+![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)
+![Downloads](https://img.shields.io/npm/dm/postcode.svg)
 [![Try postcode on RunKit](https://badge.runkitcdn.com/postcode.svg)](https://npm.runkit.com/postcode)
 
-Utility methods for UK Postcodes.
+Utility methods for UK Postcodes, including validating the shape of a postcode, extracting postcode elements (like incodes, outcodes, areas and [more](#Definitions)).
 
-Included is a test suite that tests against all postcodes listed in the Ordnance Survey's postcode dataset as of January 2014.
+Tested against ~1.7 million postcodes on ONSPD.
+
+## Features
+
+- [Check](#validate) whether a postcode conforms to the [correct format](https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Formatting)
+- [Extract](#parse) useful elements of a postcode like incode, outcode, sector
+- [Single purpose static methods](#static-methods)
+- Tested against a list of ~1.7 million postcodes listed on ONS Postcode Directory
+
+## Links
+
+- [GitHub Repository](https://github.com/ideal-postcodes/openapi)
+- [API Documentation](https://postcodejs.ideal-postcodes.dev)
+- [Try postcode.js on RunKit](https://npm.runkit.com/postcode)
+- [Postcode element definitions](#definitions)
+- [Caveat on postcode validation](#note-on-postcode-Validation)
+- [NPM Package](https://www.npmjs.com/package/postcode)
 
 ## Getting Started
 
-Install with `npm install postcode`
+### Installation
 
-Create an instance of Postcode to perform utility methods, like so
+```bash
+npm install postcode
+```
+
+### Wield
+
+```javascript
+import Postcode from "postcode";
+```
+
+### Validate
+
+```javascript
+Postcode.isValid("AA1 1AB"); // => true
+```
+
+### Parse
+
+Pass a string to `Postcode.parse`. This will return a valid or invalid postcode instance which can be easily destructured.
+
+#### Valid Postcode
+
+```
+const {
+  normalised,  // => "SW1A 2AA"
+  outcode,     // => "SW1A"
+  incode,      // => "2AA"
+  area,        // => "SW"
+  district,    // => "SW1"
+  unit,        // => "AA"
+  sector,      // => "SW1A 2"
+  subDistrict, // => "SW1A"
+  valid,       // => true
+} = Postcode.parse("Sw1A     2aa");
+```
+
+#### Invalid postcode
+
+```
+const {
+  normalised,  // => null
+  outcode,     // => null
+  incode,      // => null
+  area,        // => null
+  district,    // => null
+  unit,        // => null
+  sector,      // => null
+  subDistrict, // => null
+  valid,       // => false
+} = Postcode.parse("    Oh no, ):   ");
+```
+
+#### Accessor Overview
+
+| Postcode | .outcode | .incode | .area | .district | .subDistrict | .sector | .unit |
+|----------|----------|---------|-------|-----------|--------------|---------|-------|
+| AA9A 9AA | AA9A     | 9AA     | AA    | AA9       | AA9A         | AA9A 9  | AA    |
+| A9A 9AA  | A9A      | 9AA     | A     | A9        | A9A          | A9A 9   | AA    |
+| A9 9AA   | A9       | 9AA     | A     | A9        | `null`       | A9 9    | AA    |
+| A99 9AA  | A99      | 9AA     | A     | A99       | `null`       | A99 9   | AA    |
+| AA9 9AA  | AA9      | 9AA     | AA    | AA9       | `null`       | AA9 9   | AA    |
+| AA99 9AA | AA99     | 9AA     | AA    | AA99      | `null`       | AA99 9  | AA    |
+
+### Static Methods
+
+If you're just after a single value, you would be better served by calling a static method on `Postcode`.
+
+```javascript
+Postcode.isValid("Sw1A 2aa");      // => true
+
+Postcode.toNormalised("Sw1A 2aa");  // => "SW1A 2AA"
+Postcode.toOutcode("Sw1A 2aa");     // => "SW1A"
+Postcode.toIncode("Sw1A 2aa");      // => "2AA"
+Postcode.toArea("Sw1A 2aa");        // => "AA"
+Postcode.toDistrict("Sw1A 2aa");    // => "SW1"
+Postcode.toSubDistrict("Sw1A 2aa"); // => "SW1A"
+Postcode.toSector("Sw1A 2aa");      // => "SW1A 2"
+Postcode.toUnit("Sw1A 2aa");        // => "AA"
+```
+
+### Older API
+
+Below documents the old validation API, which continues to be supported.
+
+Create an instance of Postcode to perform utility methods, like so:
 
 ```javascript
 const Postcode = require("postcode");
@@ -91,23 +198,20 @@ The postcode sector is made up of the postcode district, the single space, and t
 
 The postcode unit is two characters added to the end of the postcode sector. Each postcode unit generally represents a street, part of a street, a single address, a group of properties, a single property, a sub-section of the property, an individual organisation or (for instance Driver and Vehicle Licensing Agency) a subsection of the organisation. The level of discrimination is often based on the amount of mail received by the premises or business. Examples of postcode units include "NY" (from "SW1W 0NY"), "GZ" (from "PO16 7GZ"), "HF" (from "GU16 7HF"), or "JQ" (from "L1 8JQ").
 
-Sources:
-
-- https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom#Formatting
-- https://en.wikipedia.org/wiki/London_postal_district#Numbered_divisions
-
-## Testing
-
-```npm test```
-
 ## Note on Postcode Validation
 
 Postcodes cannot be validated just with a regular expression. Proper postcode validation requires having a full list of postcodes to check against. Relying on a regex will produce false postives/negatives.
 
 A complete list of Postcodes can be obtained from the ONS Postcode Directory, which is updated every 3 months.
 
+## Testing
+
+```bash
+npm test
+```
+
 ## License
 
 MIT
 
-Contains Ordnance Survey Data © Crown Copyright & Database Right 2014
+Contains Ordnance Survey Data © Crown Copyright & Database Right
