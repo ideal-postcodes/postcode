@@ -1,23 +1,8 @@
 import { assert } from "chai";
 import Postcode from "../lib/index";
-import { loadFixtures, TestCase } from "./util/helper";
+import { loadFixtures, TestMethod } from "./util/helper";
 
-type Method =
-  | "normalise"
-  | "incode"
-  | "outcode"
-  | "area"
-  | "district"
-  | "unit"
-  | "sector"
-  | "subDistrict";
-
-interface TestMethodOptions {
-  tests: TestCase[];
-  method: Method;
-}
-
-const testMethod = (options: TestMethodOptions): void => {
+const testMethod: TestMethod = options => {
   const { tests, method } = options;
   tests.forEach(({ base, expected }) => {
     const p = new Postcode(base);

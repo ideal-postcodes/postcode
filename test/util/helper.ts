@@ -1,6 +1,25 @@
 import { join } from "path";
 import { readFile } from "fs";
 
+type PostcodeMethod =
+  | "normalise"
+  | "incode"
+  | "outcode"
+  | "area"
+  | "district"
+  | "unit"
+  | "sector"
+  | "subDistrict";
+
+interface TestMethodOptions {
+  tests: TestCase[];
+  method: PostcodeMethod;
+}
+
+export interface TestMethod {
+  (options: TestMethodOptions): void;
+}
+
 const dataDir = join(__dirname, "../data");
 
 interface TestFixtures {
