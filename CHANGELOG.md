@@ -9,7 +9,7 @@ Any changes, including backwards incompatible changes will be listed here
 - Provides a cleaner, more modern API to extract and parse while supporting old methods
   - Add static methods to extract single datapoints
   - Add a ValidPostcode class with accessor methods which can be destructured
-- Updated documentation
+- Updated documentation: [postcodejs.ideal-postcodes.dev](https://postcodejs.ideal-postcodes.dev)
 - Added benchmarking
 
 ## 1.0.1 (12/02/2019)

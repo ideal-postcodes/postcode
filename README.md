@@ -24,10 +24,12 @@ Tested against ~1.7 million postcodes on ONSPD.
 
 ## Links
 
+- [GitHub Repository](https://github.com/ideal-postcodes/openapi)
 - [API Documentation](https://postcodejs.ideal-postcodes.dev)
 - [Try postcode.js on RunKit](https://npm.runkit.com/postcode)
 - [Postcode element definitions](#definitions)
 - [Caveat on postcode validation](#note-on-postcode-Validation)
+- [NPM Package](https://www.npmjs.com/package/postcode)
 
 ## Getting Started
 
