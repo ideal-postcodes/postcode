@@ -21,7 +21,7 @@ Tested against ~1.7 million postcodes on ONSPD.
 - [Single purpose static methods](#static-methods)
 - Tested against a list of ~1.7 million postcodes listed on ONS Postcode Directory
 - [Extract](#parse) useful elements of a postcode like incode, outcode, sector
-![Postcode Components](http://img.ideal-postcodes.co.uk/uk-postcode-components.gif)
+![Postcode Components](https://img.ideal-postcodes.co.uk/uk-postcode-components.gif)
 
 ## Links
 
