@@ -16,7 +16,7 @@
     "@types/chai": "~4.1.7",
     "@types/csv-parse": "~1.2.2",
     "@types/mocha": "~5.2.6",
-    "@types/node": "~12.0.0",
+    "@types/node": "~12.6.1",
     "benchmark": "~2.1.4",
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
