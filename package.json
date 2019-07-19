@@ -22,7 +22,7 @@
     "coveralls": "~3.0.2",
     "csv-parse": "~4.4.0",
     "install-npm-version": "~1.0.3",
-    "mocha": "~6.1.1",
+    "mocha": "~6.2.0",
     "nyc": "~14.1.0",
     "prettier": "~1.18.0",
     "source-map-support": "~0.5.11",
