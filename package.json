@@ -20,7 +20,7 @@
     "benchmark": "~2.1.4",
     "chai": "~4.2.0",
     "coveralls": "~3.0.2",
-    "csv-parse": "~4.5.0",
+    "csv-parse": "~4.6.3",
     "install-npm-version": "~1.0.3",
     "mocha": "~6.2.0",
     "nyc": "~14.1.0",
