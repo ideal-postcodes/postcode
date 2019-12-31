@@ -59,13 +59,13 @@
     "all": true
   },
   "scripts": {
-    "test": "npm run lint && NODE_ENV=test node_modules/.bin/nyc node_modules/.bin/mocha",
+    "test": "npm run lint && NODE_ENV=test nyc mocha",
     "prepare": "npm test && npm run build",
-    "lint": "node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
-    "docs": "./node_modules/.bin/typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
-    "build": "./node_modules/.bin/tsc",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "docs": "typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
+    "build": "tsc",
     "benchmark": "npm run build && node benchmark.js",
-    "coverage": "node_modules/.bin/nyc report --reporter=text-lcov | node_modules/.bin/coveralls || true"
+    "coverage": "nyc report --reporter=text-lcov | coveralls || true"
   },
   "repository": {
     "type": "git",
