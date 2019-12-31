@@ -32,6 +32,11 @@ Tested against ~1.7 million postcodes on ONSPD.
 - [Caveat on postcode validation](#note-on-postcode-Validation)
 - [NPM Package](https://www.npmjs.com/package/postcode)
 
+## Guides
+
+- [UK Postcode Format](https://ideal-postcodes.co.uk/guides/uk-postcode-format). An overview of the UK postcode format and its constituent parts
+- [Postcode Validation](https://ideal-postcodes.co.uk/guides/postcode-validation). An overview of the many approaches to postcode validation and the tradeoffs
+
 ## Getting Started
 
 ### Installation
@@ -163,7 +168,7 @@ The postcode unit is two characters added to the end of the postcode sector. Eac
 
 Postcodes cannot be validated just with a regular expression. Proper postcode validation requires having a full list of postcodes to check against. Relying on a regex will produce false postives/negatives.
 
-A complete list of Postcodes can be obtained from the ONS Postcode Directory, which is updated every 3 months.
+[See our postcode validation guide](https://ideal-postcodes.co.uk/guides/postcode-validation) for an overview of the approaches and tradeoffs associated with postcode validation.
 
 ## Testing
 
