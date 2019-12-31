@@ -10,6 +10,7 @@
   "dependencies": {},
   "prettier": {},
   "devDependencies": {
+    "@cablanchard/eslint-config": "~1.1.1",
     "@cablanchard/tsconfig": "1.0.0",
     "@cablanchard/tslint": "0.0.1",
     "@types/benchmark": "~1.0.31",
@@ -21,6 +22,7 @@
     "chai": "~4.2.0",
     "codecov": "~3.6.1",
     "csv-parse": "~4.8.2",
+    "eslint": "~6.8.0",
     "install-npm-version": "~1.0.3",
     "mocha": "~6.2.0",
     "nyc": "~15.0.0",
@@ -61,7 +63,7 @@
   "scripts": {
     "test": "npm run lint && NODE_ENV=test nyc mocha",
     "prepare": "npm test && npm run build",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "lint": "eslint lib/**/*.ts",
     "docs": "typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
     "build": "tsc",
     "benchmark": "npm run build && node benchmark.js",
