@@ -1,14 +1,10 @@
-const Postcode = require("postcode");
+const { parse, isValid, toOutcode } = require("postcode");
 
-const postcode = new Postcode("ec1v9lb");
+// Quickly sanity check postcode
+console.log(isValid("SW1A 2AA"));
 
-postcode.valid();
-postcode.normalise();
+// Extract outward code
+console.log(toOutcode("SW1A 2AA"));
 
-postcode.outcode();
-postcode.incode();
-postcode.area();
-postcode.district();
-postcode.subDistrict();
-postcode.sector();
-postcode.unit();
+// Parse postcode to access different parts
+const postcode = parse("Sw1a 2AA");
