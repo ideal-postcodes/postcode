@@ -5,7 +5,7 @@
 > Validate & parse UK postcodes
 
 [![CircleCI](https://circleci.com/gh/ideal-postcodes/postcode.svg?style=svg)](https://circleci.com/gh/ideal-postcodes/postcode)
-[![Coverage Status](https://coveralls.io/repos/github/ideal-postcodes/postcode/badge.svg?branch=master)](https://coveralls.io/github/ideal-postcodes/postcode?branch=master)
+[![codecov](https://codecov.io/gh/ideal-postcodes/postcode/branch/master/graph/badge.svg)](https://codecov.io/gh/ideal-postcodes/postcode)
 [![Dependencies](https://david-dm.org/ideal-postcodes/postcode.svg)](https://david-dm.org/ideal-postcodes/postcode)
 [![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)](https://bundlephobia.com/result?p=postcode)
 [![Downloads](https://img.shields.io/npm/dm/postcode.svg)](https://www.npmjs.com/package/postcode)

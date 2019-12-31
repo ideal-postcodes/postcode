@@ -19,7 +19,7 @@
     "@types/node": "~13.1.0",
     "benchmark": "~2.1.4",
     "chai": "~4.2.0",
-    "coveralls": "~3.0.2",
+    "codecov": "~3.6.1",
     "csv-parse": "~4.8.2",
     "install-npm-version": "~1.0.3",
     "mocha": "~6.2.0",
@@ -65,7 +65,7 @@
     "docs": "typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
     "build": "tsc",
     "benchmark": "npm run build && node benchmark.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls || true"
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
