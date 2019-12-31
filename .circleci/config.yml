@@ -14,11 +14,24 @@ jobs:
            paths:
              - node_modules/
        - run: npm test
-       - run: npm run coverage
-
    node10:
      docker:
        - image: circleci/node:10
+     steps:
+       - checkout
+       - restore_cache:
+           keys:
+             - npm-deps-{{ checksum "package.json" }}
+       - run: npm install
+       - save_cache:
+           key: npm-deps-{{ checksum "package.json" }}
+           paths:
+             - node_modules/
+       - run: npm test
+       - run: npm run coverage
+   node12:
+     docker:
+       - image: circleci/node:12
      steps:
        - checkout
        - restore_cache:
@@ -38,4 +51,4 @@ workflows:
     jobs:
       - node8
       - node10
-       
+      - node12 
