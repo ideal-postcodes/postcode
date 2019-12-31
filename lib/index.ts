@@ -87,13 +87,11 @@ const SPACE_REGEX = /\s+/gi;
 /**
  * Drop all spaces and uppercase
  */
-const sanitize = (s: string): string => {
-  return s.replace(SPACE_REGEX, "").toUpperCase();
-};
+const sanitize = (s: string): string =>
+  s.replace(SPACE_REGEX, "").toUpperCase();
 
-const matchOn = (s: string, regex: RegExp): RegExpMatchArray | null => {
-  return sanitize(s).match(regex);
-};
+const matchOn = (s: string, regex: RegExp): RegExpMatchArray | null =>
+  sanitize(s).match(regex);
 
 const incodeRegex = /\d[a-z]{2}$/i;
 const validOutcodeRegex = /^[a-z]{1,2}\d[a-z\d]?$/i;
@@ -111,9 +109,8 @@ const VALIDATION_REGEX = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
  *  - AA9 9AA
  *  - AA99 9AA
  */
-const isValid: Validator = postcode => {
-  return postcode.match(VALIDATION_REGEX) !== null;
-};
+const isValid: Validator = postcode =>
+  postcode.match(VALIDATION_REGEX) !== null;
 
 /**
  * Returns a normalised postcode string (i.e. uppercased and properly spaced)
