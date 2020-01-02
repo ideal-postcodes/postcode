@@ -54,7 +54,20 @@
   "runkitExampleFilename": "example.js",
   "nyc": {
     "include": [
-      "index.js"
+      "lib/**/*.ts",
+      "generate/**/*.ts"
+    ],
+    "exclude": [
+      "dist/*",
+      "**/*.d.ts",
+      "generate/index.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
     ],
     "reporter": [
       "text-summary",
