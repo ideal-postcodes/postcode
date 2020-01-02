@@ -11,6 +11,7 @@
   "prettier": {},
   "devDependencies": {
     "@cablanchard/eslint-config": "~1.1.1",
+    "@cablanchard/semantic-release": "~1.3.1",
     "@cablanchard/tsconfig": "1.0.0",
     "@cablanchard/tslint": "0.0.1",
     "@types/benchmark": "~1.0.31",
@@ -27,6 +28,7 @@
     "mocha": "~6.2.0",
     "nyc": "~15.0.0",
     "prettier": "~1.19.1",
+    "semantic-release": "~15.14.0",
     "source-map-support": "~0.5.11",
     "ts-node": "~8.5.0",
     "tslint": "~5.20.0",
@@ -61,6 +63,7 @@
     "all": true
   },
   "scripts": {
+    "semantic-release": "semantic-release --no-ci",
     "test": "npm run lint && NODE_ENV=test nyc mocha",
     "prepare": "npm test && npm run build",
     "lint": "eslint lib/**/*.ts",
@@ -85,6 +88,9 @@
     "email": "support@ideal-postcodes.co.uk"
   },
   "license": "MIT",
+  "release": {
+    "extends": "@cablanchard/semantic-release/dist/npm"
+  },
   "bugs": {
     "url": "https://github.com/ideal-postcodes/postcode/issues"
   }
