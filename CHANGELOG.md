@@ -1,13 +1,15 @@
 ## [2.0.1](https://github.com/ideal-postcodes/postcode/compare/2.0.0...2.0.1) (2020-01-02)
 
+Only significant change is typescript upgrade (3.7)
 
-### Bug Fixes
+Test automated tagging and npm publish with semantic release
+
+Cosmetic changes since 2.0.0:
+- Improved docs
+- Updated dev dependencies
+- General maintenance
 
 * **Release:** Trigger patch version bump ([96d0ecd](https://github.com/ideal-postcodes/postcode/commit/96d0ecdfdd996b9672092275e449d91ab515101c))
-
-# Changelog
-
-Any changes, including backwards incompatible changes will be listed here
 
 ## 2.0.0 (12/02/2019)
 
