@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/ideal-postcodes/postcode/compare/2.0.0...2.0.1) (2020-01-02)
+
+
+### Bug Fixes
+
+* **Release:** Trigger patch version bump ([96d0ecd](https://github.com/ideal-postcodes/postcode/commit/96d0ecdfdd996b9672092275e449d91ab515101c))
+
 # Changelog
 
 Any changes, including backwards incompatible changes will be listed here
@@ -23,4 +30,3 @@ Any changes, including backwards incompatible changes will be listed here
 - Drop unused branches
 - Update dependencies
 - Add coverage testing
-
