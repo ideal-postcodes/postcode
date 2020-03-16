@@ -32,7 +32,7 @@
     "source-map-support": "~0.5.11",
     "ts-node": "~8.6.1",
     "tslint": "~5.20.0",
-    "typedoc": "~0.16.2",
+    "typedoc": "~0.17.0",
     "typescript": "~3.8.2"
   },
   "mocha": {
