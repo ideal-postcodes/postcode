@@ -39,3 +39,5 @@ jobs:
 
       - name: Coverage
         run: npm run coverage
+        env:
+          CODECOV_TOKEN:  ${{ secrets.CODECOV_TOKEN }}
