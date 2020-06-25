@@ -1,6 +1,6 @@
 {
   "name": "postcode",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "UK Postcode helper methods",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
