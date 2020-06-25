@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/ideal-postcodes/postcode/compare/3.0.0...4.0.0) (2020-06-25)
+
+
+### chore
+
+* **Node:** Drop Node 8, add 14 ([e7a0f43](https://github.com/ideal-postcodes/postcode/commit/e7a0f43dd9a3dabbd226eb203a364ee7397f3342))
+
+
+### BREAKING CHANGES
+
+* **Node:** Node 8 no longer supported
+
 # [3.0.0](https://github.com/ideal-postcodes/postcode/compare/2.0.1...3.0.0) (2020-06-25)
 
 
