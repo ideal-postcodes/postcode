@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/ideal-postcodes/postcode/compare/2.0.1...3.0.0) (2020-06-25)
+
+
+### chore
+
+* **Node:** Drop explicit support for Node 8 ([53393f1](https://github.com/ideal-postcodes/postcode/commit/53393f16a0f34979c26ff1dccce1ac077f335fb1))
+
+
+### BREAKING CHANGES
+
+* **Node:** Node 8 no longer forms part of CI testing
+
 ## [2.0.1](https://github.com/ideal-postcodes/postcode/compare/2.0.0...2.0.1) (2020-01-02)
 
 Only significant change is typescript upgrade (3.7)
