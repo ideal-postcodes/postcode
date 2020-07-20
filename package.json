@@ -23,7 +23,7 @@
     "chai": "~4.2.0",
     "codecov": "~3.7.0",
     "csv-parse": "~4.10.1",
-    "eslint": "~7.4.0",
+    "eslint": "~7.5.0",
     "install-npm-version": "~1.0.3",
     "mocha": "~8.0.1",
     "nyc": "~15.1.0",
