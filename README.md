@@ -30,7 +30,7 @@ Tested against ~1.7 million postcodes on ONSPD.
 - [API Documentation](https://postcodejs.ideal-postcodes.dev)
 - [Try postcode.js on RunKit](https://npm.runkit.com/postcode)
 - [Postcode element definitions](#definitions)
-- [Caveat on postcode validation](#note-on-postcode-Validation)
+- [Notes](#notes)
 - [NPM Package](https://www.npmjs.com/package/postcode)
 
 ## Guides
@@ -58,7 +58,9 @@ isValid("AA1 1AB"); // => true
 
 Pass a string to `parse`. This will return a valid or invalid postcode instance which can be easily destructured.
 
-#### Valid Postcode `ValidPostcode`
+#### Valid Postcode 
+
+`ValidPostcode` type definition
 
 ```javascript
 import { parse } from "postcode";
@@ -76,7 +78,9 @@ const {
 } = parse("Sw1A     2aa");
 ```
 
-#### Invalid Postcode `InvalidPostcode`
+#### Invalid Postcode 
+
+`InvalidPostcode` type definition
 
 ```javascript
 const {
@@ -96,7 +100,7 @@ const {
 
 The TypeScript compiler can infer if you have a valid postcode type from `parse` by checking the `valid` attribute
 
-```
+```javascript
 import { parse } from "postcode";
 
 const postcode = parse("SW1A 2AA");
@@ -130,12 +134,12 @@ If you're just after a single value, you can import a single method.
 #### Validation
 
 ```javascript
-isValid("Sw1A 2aa");      // => true
+isValid("Sw1A 2aa"); // => true
 ```
 
 #### Formatting
 
-```
+```javascript
 import {
   toNormalised,
   toOutcode,
@@ -155,6 +159,7 @@ toDistrict("Sw1A 2aa");    // => "SW1"
 toSubDistrict("Sw1A 2aa"); // => "SW1A"
 toSector("Sw1A 2aa");      // => "SW1A 2"
 toUnit("Sw1A 2aa");        // => "AA"
+```
 
 #### Extract & Replace
 
@@ -163,8 +168,9 @@ toUnit("Sw1A 2aa");        // => "AA"
 ```javascript
 const matches = match("The PM and her no.2 live at SW1A2aa and SW1A 2AB"); // => ["SW1A2aa", "SW1A 2AB"]
 
-// Perform transformations like normalisation postcodes using `.map` and `toNormalised`
+// Perform transformations like normalisation using `.map` and `toNormalised`
 matches.map(toNormalised); // => ["SW1A 2AA", "SW1A 2AB"]
+matches.map(toOutcode); // => ["SW1A", "SW1A"]
 
 // No matches yields empty array
 match("Some London outward codes are SW1A, NW1 and E1"); // => []
@@ -173,8 +179,9 @@ match("Some London outward codes are SW1A, NW1 and E1"); // => []
 `replace`. Replace postcodes in a body of text, returning the updated corpus and any matching postcodes
 
 ```javascript
-replace("The PM and her no.2 live at SW1A2AA and SW1A 2AB");
-// => { match: ["SW1A2AA", "SW1A 2AB"], result: "The PM and her no.2 live at  and " }
+const { match, result } = replace("The PM and her no.2 live at SW1A2AA and SW1A 2AB");
+// => match: ["SW1A2AA", "SW1A 2AB"]
+// => result: "The PM and her no.2 live at  and "
 
 // Add custom replacement
 replace("The PM lives at SW1A 2AA", "Downing Street");
