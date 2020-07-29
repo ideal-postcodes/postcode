@@ -20,6 +20,11 @@ export const OUTCODE_REGEX = /^[a-z]{1,2}\d[a-z\d]?$/i;
 export const POSTCODE_REGEX = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
 
 /**
+ * Test for a valid postcode embedded in text
+ */
+export const POSTCODE_CORPUS_REGEX = /[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}/gi;
+
+/**
  * Tests for the area section of a postcode
  */
 export const AREA_REGEX = /^[a-z]{1,2}/i;
@@ -283,3 +288,11 @@ export const parse = (postcode: string): ValidPostcode | InvalidPostcode => {
     unit: toUnit(postcode) as string,
   };
 };
+
+/**
+ * Searches a body of text for postcode matches
+ *
+ * Returns an empty array if no match
+ */
+export const match = (corpus: string): string[] =>
+  corpus.match(POSTCODE_CORPUS_REGEX) || [];
