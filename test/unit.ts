@@ -2,7 +2,7 @@ import { assert } from "chai";
 import * as Postcode from "../lib/index";
 import { loadFixtures, TestMethod } from "./util/helper";
 
-const { match } = Postcode;
+const { match, toNormalised, replace } = Postcode;
 
 const testMethod: TestMethod = (options) => {
   const { tests, method } = options;
@@ -129,11 +129,47 @@ describe("Unit parsing", () => {
 describe("match", () => {
   it("returns matching postcodes", () => {
     const corpus = `SW1A2Aa is the residence of the Prime Minister. SW1a 2AB is the residence of her no.2. SW1A   1AA is where the queen lives. They are located in the SW1A outcode`;
-    assert.deepEqual(match(corpus), ["SW1A2Aa", "SW1a 2AB", "SW1A   1AA"]);
+    const result = match(corpus);
+    assert.deepEqual(result, ["SW1A2Aa", "SW1a 2AB", "SW1A   1AA"]);
+    assert.deepEqual(result.map(toNormalised), [
+      "SW1A 2AA",
+      "SW1A 2AB",
+      "SW1A 1AA",
+    ]);
   });
 
   it("returns an empty array if no match", () => {
     const corpus = `SW1 NW1 E1 E2`;
     assert.deepEqual(match(corpus), []);
+  });
+});
+
+describe("replace", () => {
+  it("replaces text and returns matching postcodes", () => {
+    const corpus = `SW1A2Aa is the residence of the Prime Minister. SW1a 2AB is the residence of her no.2. SW1A   1AA is where the queen lives. They are located in the SW1A outcode`;
+    const { match, result } = replace(corpus);
+    assert.deepEqual(match, ["SW1A2Aa", "SW1a 2AB", "SW1A   1AA"]);
+    assert.equal(
+      result,
+      ` is the residence of the Prime Minister.  is the residence of her no.2.  is where the queen lives. They are located in the SW1A outcode`
+    );
+  });
+
+  it("replaces postcode with custom string", () => {
+    const corpus = `SW1A2Aa is the residence of the Prime Minister. SW1a 2AB is the residence of her no.2. SW1A   1AA is where the queen lives. They are located in the SW1A outcode`;
+    const replaceWith = "POSTCODE";
+    const { match, result } = replace(corpus, replaceWith);
+    assert.deepEqual(match, ["SW1A2Aa", "SW1a 2AB", "SW1A   1AA"]);
+    assert.equal(
+      result,
+      `POSTCODE is the residence of the Prime Minister. POSTCODE is the residence of her no.2. POSTCODE is where the queen lives. They are located in the SW1A outcode`
+    );
+  });
+
+  it("returns an empty array if no match", () => {
+    const corpus = `SW1 NW1 E1 E2`;
+    const { match, result } = replace(corpus);
+    assert.deepEqual(match, []);
+    assert.deepEqual(result, corpus);
   });
 });
