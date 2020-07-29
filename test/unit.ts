@@ -2,6 +2,8 @@ import { assert } from "chai";
 import * as Postcode from "../lib/index";
 import { loadFixtures, TestMethod } from "./util/helper";
 
+const { match } = Postcode;
+
 const testMethod: TestMethod = (options) => {
   const { tests, method } = options;
   tests.forEach(({ base, expected }) => {
@@ -121,5 +123,17 @@ describe("Unit parsing", () => {
 
   it("should return null if invalid postcode", () => {
     assert.isNull(Postcode.parse("Definitely bogus").unit);
+  });
+});
+
+describe("match", () => {
+  it("returns matching postcodes", () => {
+    const corpus = `SW1A2Aa is the residence of the Prime Minister. SW1a 2AB is the residence of her no.2. SW1A   1AA is where the queen lives. They are located in the SW1A outcode`;
+    assert.deepEqual(match(corpus), ["SW1A2Aa", "SW1a 2AB", "SW1A   1AA"]);
+  });
+
+  it("returns an empty array if no match", () => {
+    const corpus = `SW1 NW1 E1 E2`;
+    assert.deepEqual(match(corpus), []);
   });
 });
