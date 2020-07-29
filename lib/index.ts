@@ -301,6 +301,19 @@ export const parse = (postcode: string): ValidPostcode | InvalidPostcode => {
  * Searches a body of text for postcode matches
  *
  * Returns an empty array if no match
+ *
+ * @example
+ *
+ * ```
+ * // Retrieve valid postcodes in a body of text
+ * const matches = match("The PM and her no.2 live at SW1A2aa and SW1A 2AB"); // => ["SW1A2aa", "SW1A 2AB"]
+ *
+ * // Perform transformations like normalisation postcodes using `.map` and `toNormalised`
+ * matches.map(toNormalised); // => ["SW1A 2AA", "SW1A 2AB"]
+ *
+ * // No matches yields empty array
+ * match("Some London outward codes are SW1A, NW1 and E1"); // => []
+ * ```
  */
 export const match = (corpus: string): string[] =>
   corpus.match(POSTCODE_CORPUS_REGEX) || [];
@@ -323,6 +336,22 @@ interface ReplaceResult {
  * Replaces postcodes in a body of text with a string
  *
  * By default the replacement string is empty string `""`
+ *
+ * @example
+ *
+ * ```
+ * // Replace postcodes in a body of text
+ * replace("The PM and her no.2 live at SW1A2AA and SW1A 2AB");
+ * // => { match: ["SW1A2AA", "SW1A 2AB"], result: "The PM and her no.2 live at  and " }
+ *
+ * // Add custom replacement
+ * replace("The PM lives at SW1A 2AA", "Downing Street");
+ * // => { match: ["SW1A 2AA"], result: "The PM lives at Downing Street" };
+ *
+ * // No match
+ * replace("Some London outward codes are SW1A, NW1 and E1");
+ * // => { match: [], result: "Some London outward codes are SW1A, NW1 and E1" }
+ * ```
  */
 export const replace = (corpus: string, replaceWith = ""): ReplaceResult => ({
   match: match(corpus),
