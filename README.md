@@ -46,27 +46,25 @@ Tested against ~1.7 million postcodes on ONSPD.
 npm install postcode
 ```
 
-### Wield
-
-```javascript
-import Postcode from "postcode";
-```
-
 ### Validate
 
 ```javascript
-Postcode.isValid("AA1 1AB"); // => true
+import { isValid } from "postcode";
+
+isValid("AA1 1AB"); // => true
 ```
 
 ### Parse
 
-Pass a string to `Postcode.parse`. This will return a valid or invalid postcode instance which can be easily destructured.
+Pass a string to `parse`. This will return a valid or invalid postcode instance which can be easily destructured.
 
-#### Valid Postcode
+#### Valid Postcode `ValidPostcode`
 
-```
+```javascript
+import { parse } from "postcode";
+
 const {
-  normalised,  // => "SW1A 2AA"
+  postcode,    // => "SW1A 2AA"
   outcode,     // => "SW1A"
   incode,      // => "2AA"
   area,        // => "SW"
@@ -75,14 +73,14 @@ const {
   sector,      // => "SW1A 2"
   subDistrict, // => "SW1A"
   valid,       // => true
-} = Postcode.parse("Sw1A     2aa");
+} = parse("Sw1A     2aa");
 ```
 
-#### Invalid postcode
+#### Invalid Postcode `InvalidPostcode`
 
-```
+```javascript
 const {
-  normalised,  // => null
+  postcode,    // => null
   outcode,     // => null
   incode,      // => null
   area,        // => null
@@ -91,10 +89,29 @@ const {
   sector,      // => null
   subDistrict, // => null
   valid,       // => false
-} = Postcode.parse("    Oh no, ):   ");
+} = parse("    Oh no, ):   ");
 ```
 
-#### Accessor Overview
+#### Type Guard
+
+The TypeScript compiler can infer if you have a valid postcode type from `parse` by checking the `valid` attribute
+
+```
+import { parse } from "postcode";
+
+const postcode = parse("SW1A 2AA");
+
+if (postcode.valid) {
+  // `postcode` adheres to the `ValidPostcode` interface
+  processString(postcode.outcode.toLowerCase()); // TypeScript compiler knows `outcode` to be a string
+  processString(postcode.subDistrict.toLowerCase()); // And it will throw errors on common gotchas (e.g. subdistrict can be `null` on a valid postcode)
+} else {
+  // `postcode` adheres to the `InvalidPostcode` interface
+  processInvalidPostcode(postcode);
+}
+```
+
+#### Valid Postcode Object
 
 | Postcode | .outcode | .incode | .area | .district | .subDistrict | .sector | .unit |
 |----------|----------|---------|-------|-----------|--------------|---------|-------|
@@ -105,26 +122,55 @@ const {
 | AA9 9AA  | AA9      | 9AA     | AA    | AA9       | `null`       | AA9 9   | AA    |
 | AA99 9AA | AA99     | 9AA     | AA    | AA99      | `null`       | AA99 9  | AA    |
 
-### Static Methods
+### Exported Methods
 
-If you're just after a single value, you would be better served by calling a static method on `Postcode`.
+If you're just after a single value, you can import a single method.
 
 ```javascript
-Postcode.isValid("Sw1A 2aa");      // => true
+# Validation
+isValid("Sw1A 2aa");      // => true
 
-Postcode.toNormalised("Sw1A 2aa");  // => "SW1A 2AA"
-Postcode.toOutcode("Sw1A 2aa");     // => "SW1A"
-Postcode.toIncode("Sw1A 2aa");      // => "2AA"
-Postcode.toArea("Sw1A 2aa");        // => "AA"
-Postcode.toDistrict("Sw1A 2aa");    // => "SW1"
-Postcode.toSubDistrict("Sw1A 2aa"); // => "SW1A"
-Postcode.toSector("Sw1A 2aa");      // => "SW1A 2"
-Postcode.toUnit("Sw1A 2aa");        // => "AA"
+# Formatting
+toNormalised("Sw1A 2aa");  // => "SW1A 2AA"
+toOutcode("Sw1A 2aa");     // => "SW1A"
+toIncode("Sw1A 2aa");      // => "2AA"
+toArea("Sw1A 2aa");        // => "AA"
+toDistrict("Sw1A 2aa");    // => "SW1"
+toSubDistrict("Sw1A 2aa"); // => "SW1A"
+toSector("Sw1A 2aa");      // => "SW1A 2"
+toUnit("Sw1A 2aa");        // => "AA"
+
+# Replacement
+match("The PM and her no.2 live at SW1A2AA and SW1A 2AB"); // => ["SW1A2AA", "SW1A 2AB"]
+replace("The PM and her no.2 live at SW1A2AA and SW1A 2AB");  // => { match: ["SW1A2AA", "SW1A 2AB"], result: "The PM and her no.2 live at  and " }
 ```
 
-### Legacy API
+## Version 5.0.0
 
-The legacy object based API is documented in [LEGACY.md](LEGACY.md)
+5.0.0 brings changes which allows for better treeshaking and interopability with ES Modules. It also deprecates legacy class based APIs in favour of single purpose methods.
+
+### Breaking Changes
+
+- `postcode` no longer exports a class. Legacy `new Postcode()` functionality has been removed. Methods attached to `Postcode` are all available as named exports.
+- `postcode` no longer uses default exports. All exports are named. E.g.
+```javascript
+// In <= 4.0.0
+import Postcode from "postcode";
+Postcode.parse("SW1A 2AA");
+
+// In >= 5.0.0
+import { parse } from "postcode";
+parse("SW1A 2AA");
+```
+
+In many cases, migration can be achieved by changing `import Postcode from "postcode"` to `import * as Postcode from "postcode"`, however this gives up treeshaking advantages.
+
+### New Features
+
+- `postcode` now exports a ES Module build
+- Exports regular expressions
+- `match` accepts a string and returns all valid postcodes
+- `replace` accepts a string and replaces valid postcodes with an optional second argument. Default replacement text is empty string `""`
 
 ## Definitions
 
