@@ -1,3 +1,21 @@
+# [5.0.0](https://github.com/ideal-postcodes/postcode/compare/4.0.0...5.0.0) (2020-07-29)
+
+
+### Features
+
+* **5.0.0:** API Updates ([9d576c8](https://github.com/ideal-postcodes/postcode/commit/9d576c86d14893c759184fc5462f8cbfdd066ecc))
+* **ES Modules:** Create ES Module compatible build ([44ef920](https://github.com/ideal-postcodes/postcode/commit/44ef92046e0dd3b12df7a4c50e3383d16753358b))
+* **Match:** Implement match ([95f1d0e](https://github.com/ideal-postcodes/postcode/commit/95f1d0e0c96ce4e04a547c922592d910772b16e0))
+* **Regex:** Exports and documents used Regexs ([dd1315d](https://github.com/ideal-postcodes/postcode/commit/dd1315d854506ba1b9f87dcc9be71a5d0a6070bd))
+* **Replace:** Implement replace ([deb348b](https://github.com/ideal-postcodes/postcode/commit/deb348bbc445168270518520a8c1753cf2ac50f0))
+
+
+### BREAKING CHANGES
+
+* **5.0.0:** - `postcode` no longer uses default exports. All exports are named
+- `postcode` no longer exports a class
+- Legacy `new Postcode()` functionality has been removed. Methods attached to `Postcode` are all available as named exports. E.g. `new Postcode(postcode).unit()` becomes `toUnit(postcode)`;
+
 # [4.0.0](https://github.com/ideal-postcodes/postcode/compare/3.0.0...4.0.0) (2020-06-25)
 
 
