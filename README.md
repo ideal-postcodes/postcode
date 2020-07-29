@@ -127,10 +127,10 @@ if (postcode.valid) {
 If you're just after a single value, you can import a single method.
 
 ```javascript
-# Validation
+// Validation
 isValid("Sw1A 2aa");      // => true
 
-# Formatting
+// Formatting
 toNormalised("Sw1A 2aa");  // => "SW1A 2AA"
 toOutcode("Sw1A 2aa");     // => "SW1A"
 toIncode("Sw1A 2aa");      // => "2AA"
@@ -140,9 +140,25 @@ toSubDistrict("Sw1A 2aa"); // => "SW1A"
 toSector("Sw1A 2aa");      // => "SW1A 2"
 toUnit("Sw1A 2aa");        // => "AA"
 
-# Replacement
-match("The PM and her no.2 live at SW1A2AA and SW1A 2AB"); // => ["SW1A2AA", "SW1A 2AB"]
+// Match
+// Retrieve valid postcodes in a body of text
+const matches = match("The PM and her no.2 live at SW1A2aa and SW1A 2AB"); // => ["SW1A2aa", "SW1A 2AB"]
+
+// Perform transformations like normalisation postcodes using `.map` and `toNormalised`
+matches.map(toNormalised); // => ["SW1A 2AA", "SW1A 2AB"]
+
+// No matches yields empty array
+match("Some London outward codes are SW1A, NW1 and E1"); // => []
+
+// Replace
+// Replace postcodes in a body of text
 replace("The PM and her no.2 live at SW1A2AA and SW1A 2AB");  // => { match: ["SW1A2AA", "SW1A 2AB"], result: "The PM and her no.2 live at  and " }
+
+// Add custom replacement
+replace("The PM lives at SW1A 2AA", "Downing Street"); // => { match: ["SW1A 2AA"], result: "The PM lives at Downing Street" };
+
+// No match
+replace("Some London outward codes are SW1A, NW1 and E1"); // => { match: [], result: "Some London outward codes are SW1A, NW1 and E1" }
 ```
 
 ## Version 5.0.0

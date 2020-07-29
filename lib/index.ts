@@ -296,3 +296,24 @@ export const parse = (postcode: string): ValidPostcode | InvalidPostcode => {
  */
 export const match = (corpus: string): string[] =>
   corpus.match(POSTCODE_CORPUS_REGEX) || [];
+
+interface ReplaceResult {
+  /**
+   * List of matching postcodes found intext
+   */
+  match: string[];
+  /**
+   * Body of text with postcodes replaced (with empty string by default)
+   */
+  result: string;
+}
+
+/**
+ * Replaces postcodes in a body of text with a string
+ *
+ * By default the replacement string is empty string `""`
+ */
+export const replace = (corpus: string, replaceWith = ""): ReplaceResult => ({
+  match: match(corpus),
+  result: corpus.replace(POSTCODE_CORPUS_REGEX, replaceWith),
+});
