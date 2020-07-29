@@ -14,7 +14,7 @@ const INVALID_POSTCODE = Object.freeze({
   unit: null,
 });
 
-describe("Postcode.parse", () => {
+describe("parse", () => {
   describe("invalid postcode", () => {
     it("returns an invalid postcode object", () => {
       const {
@@ -69,7 +69,7 @@ describe("Postcode.parse", () => {
         });
       });
 
-      describe("Postcode.validOutcode", () => {
+      describe("validOutcode", () => {
         it("should return true for valid outcodes", async () => {
           const { tests } = await loadFixtures("outcodes.json");
           tests.forEach(({ expected }) =>

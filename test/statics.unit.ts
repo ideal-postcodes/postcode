@@ -19,7 +19,7 @@ const testMethod = (options: TestMethodOptions): void => {
   });
 };
 
-describe("Postcode.isValid", async () => {
+describe("isValid", async () => {
   it("should return true for postcodes that look correct", async () => {
     const { tests } = await loadFixtures("validation.json");
     tests.forEach(({ base, expected }) => {
@@ -28,7 +28,7 @@ describe("Postcode.isValid", async () => {
   });
 });
 
-describe("Postcode.toNormalised", () => {
+describe("toNormalised", () => {
   it("should correctly normalise postcodes", async () => {
     const { tests } = await loadFixtures("normalisation.json");
     testMethod({ method: Postcode.toNormalised, tests });
@@ -39,7 +39,7 @@ describe("Postcode.toNormalised", () => {
   });
 });
 
-describe("Postcode.toIncode", () => {
+describe("toIncode", () => {
   it("should correctly parse incodes", async () => {
     const { tests } = await loadFixtures("incodes.json");
     testMethod({ method: Postcode.toIncode, tests });
@@ -50,7 +50,7 @@ describe("Postcode.toIncode", () => {
   });
 });
 
-describe("Postcode.toOutcode", () => {
+describe("toOutcode", () => {
   it("should correctly parse outcodes", async () => {
     const { tests } = await loadFixtures("outcodes.json");
     testMethod({ method: Postcode.toOutcode, tests });
@@ -61,7 +61,7 @@ describe("Postcode.toOutcode", () => {
   });
 });
 
-describe("Postcode.toArea", () => {
+describe("toArea", () => {
   it("should correctly parse areas", async () => {
     const { tests } = await loadFixtures("areas.json");
     testMethod({ method: Postcode.toArea, tests });
@@ -72,7 +72,7 @@ describe("Postcode.toArea", () => {
   });
 });
 
-describe("Postcode.toDistrict", () => {
+describe("toDistrict", () => {
   it("should correctly parse districts", async () => {
     const { tests } = await loadFixtures("districts.json");
     testMethod({ method: Postcode.toDistrict, tests });
@@ -83,7 +83,7 @@ describe("Postcode.toDistrict", () => {
   });
 });
 
-describe("Postcode.toSubDistrict", () => {
+describe("toSubDistrict", () => {
   it("should correctly parse sub-districts", async () => {
     const { tests } = await loadFixtures("sub-districts.json");
     testMethod({ method: Postcode.toSubDistrict, tests });
@@ -94,7 +94,7 @@ describe("Postcode.toSubDistrict", () => {
   });
 });
 
-describe("Postcode.toSector", () => {
+describe("toSector", () => {
   it("should correctly parse sectors", async () => {
     const { tests } = await loadFixtures("sectors.json");
     testMethod({ method: Postcode.toSector, tests });
@@ -105,7 +105,7 @@ describe("Postcode.toSector", () => {
   });
 });
 
-describe("Postcode.toUnit", () => {
+describe("toUnit", () => {
   it("should correctly parse units", async () => {
     const { tests } = await loadFixtures("units.json");
     testMethod({ method: Postcode.toUnit, tests });
