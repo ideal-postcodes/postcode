@@ -36,6 +36,9 @@ interface Validator {
   (input: string): boolean;
 }
 
+/**
+ * @hidden
+ */
 interface Parser {
   /**
    * @hidden
@@ -43,6 +46,11 @@ interface Parser {
   (postcode: string): string | null;
 }
 
+/**
+ * Represents a valid postcode
+ *
+ * Note that results will be normalised (i.e. correctly formatted), including `postcode`
+ */
 type ValidPostcode = {
   valid: true;
   postcode: string;
@@ -297,6 +305,9 @@ export const parse = (postcode: string): ValidPostcode | InvalidPostcode => {
 export const match = (corpus: string): string[] =>
   corpus.match(POSTCODE_CORPUS_REGEX) || [];
 
+/**
+ * @hidden
+ */
 interface ReplaceResult {
   /**
    * List of matching postcodes found intext
