@@ -22,7 +22,6 @@
     "codecov": "~3.7.0",
     "csv-parse": "~4.11.1",
     "eslint": "~7.5.0",
-    "install-npm-version": "~1.0.3",
     "mocha": "~8.0.1",
     "nyc": "~15.1.0",
     "prettier": "~2.0.1",
@@ -76,7 +75,7 @@
   "scripts": {
     "semantic-release": "semantic-release --no-ci",
     "test": "npm run lint && NODE_ENV=test nyc mocha",
-    "prepare": "npm test && npm run build",
+    "prepublishOnly": "npm run build",
     "lint": "eslint lib/**/*.ts",
     "docs": "typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
     "build": "tsc",
