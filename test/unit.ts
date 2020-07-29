@@ -1,13 +1,12 @@
 import { assert } from "chai";
-import Postcode from "../lib/index";
+import * as Postcode from "../lib/index";
 import { loadFixtures, TestMethod } from "./util/helper";
 
-const testMethod: TestMethod = options => {
+const testMethod: TestMethod = (options) => {
   const { tests, method } = options;
   tests.forEach(({ base, expected }) => {
-    const p = new Postcode(base);
-    const result = p[method].call(p);
-    assert.equal(result, expected);
+    const p = Postcode.parse(base);
+    assert.equal(p[method], expected);
   });
 };
 
@@ -15,8 +14,8 @@ describe("Postcode#Valid", async () => {
   it("should return true for postcodes that look correct", async () => {
     const { tests } = await loadFixtures("validation.json");
     tests.forEach(({ base, expected }) => {
-      const p = new Postcode(base);
-      assert.equal(p.valid(), Boolean(expected));
+      const p = Postcode.parse(base);
+      assert.equal(p.valid, Boolean(expected));
     });
   });
 });
@@ -24,11 +23,11 @@ describe("Postcode#Valid", async () => {
 describe("Postcode normalisation", () => {
   it("should correctly normalise postcodes", async () => {
     const { tests } = await loadFixtures("normalisation.json");
-    testMethod({ method: "normalise", tests });
+    testMethod({ method: "postcode", tests });
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitly bogus").normalise());
+    assert.isNull(Postcode.parse("Definitly bogus").postcode);
   });
 });
 
@@ -42,7 +41,7 @@ describe("Postcode.validOutcode", () => {
 
   it("should return false for invalid outcode", () => {
     const invalidOutcodes = ["BOGUS", "Hello there", "12345"];
-    invalidOutcodes.forEach(code =>
+    invalidOutcodes.forEach((code) =>
       assert.isFalse(Postcode.validOutcode(code))
     );
   });
@@ -55,7 +54,7 @@ describe("Incode parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitly bogus").incode());
+    assert.isNull(Postcode.parse("Definitly bogus").incode);
   });
 });
 
@@ -66,7 +65,7 @@ describe("Outcode parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitly bogus").outcode());
+    assert.isNull(Postcode.parse("Definitly bogus").outcode);
   });
 });
 
@@ -77,7 +76,7 @@ describe("Area parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitely bogus").area());
+    assert.isNull(Postcode.parse("Definitely bogus").area);
   });
 });
 
@@ -88,7 +87,7 @@ describe("District parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitely bogus").district());
+    assert.isNull(Postcode.parse("Definitely bogus").district);
   });
 });
 
@@ -99,7 +98,7 @@ describe("Sub-district parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitely bogus").subDistrict());
+    assert.isNull(Postcode.parse("Definitely bogus").subDistrict);
   });
 });
 
@@ -110,7 +109,7 @@ describe("Sector parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitely bogus").sector());
+    assert.isNull(Postcode.parse("Definitely bogus").sector);
   });
 });
 
@@ -121,6 +120,6 @@ describe("Unit parsing", () => {
   });
 
   it("should return null if invalid postcode", () => {
-    assert.isNull(new Postcode("Definitely bogus").unit());
+    assert.isNull(Postcode.parse("Definitely bogus").unit);
   });
 });

@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import Postcode from "../lib/index";
+import * as Postcode from "../lib/index";
 import { loadFixtures, TestCase } from "./util/helper";
 
 interface StaticMethod {
