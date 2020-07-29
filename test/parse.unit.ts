@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { loadFixtures } from "./util/helper";
-import Postcode from "../lib/index";
+import * as Postcode from "../lib/index";
 
 const INVALID_POSTCODE = Object.freeze({
   valid: false,
@@ -11,7 +11,7 @@ const INVALID_POSTCODE = Object.freeze({
   district: null,
   subDistrict: null,
   sector: null,
-  unit: null
+  unit: null,
 });
 
 describe("Postcode.parse", () => {
@@ -26,7 +26,7 @@ describe("Postcode.parse", () => {
         district,
         subDistrict,
         sector,
-        unit
+        unit,
       } = Postcode.parse("foo");
       assert.deepEqual(
         {
@@ -38,7 +38,7 @@ describe("Postcode.parse", () => {
           district,
           subDistrict,
           sector,
-          unit
+          unit,
         },
         { ...INVALID_POSTCODE }
       );
@@ -79,7 +79,7 @@ describe("Postcode.parse", () => {
 
         it("should return false for invalid outcode", () => {
           const invalidOutcodes = ["BOGUS", "Hello there", "12345"];
-          invalidOutcodes.forEach(code =>
+          invalidOutcodes.forEach((code) =>
             assert.isFalse(Postcode.validOutcode(code))
           );
         });

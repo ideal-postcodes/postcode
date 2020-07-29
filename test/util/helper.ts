@@ -2,7 +2,7 @@ import { join } from "path";
 import { readFile } from "fs";
 
 type PostcodeMethod =
-  | "normalise"
+  | "postcode"
   | "incode"
   | "outcode"
   | "area"
