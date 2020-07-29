@@ -1,15 +1,40 @@
+/**
+ * @hidden
+ */
 export const DISTRICT_SPLIT_REGEX = /^([a-z]{1,2}\d)([a-z])$/i;
+/**
+ * Tests for the unit section of a postcode
+ */
 export const UNIT_REGEX = /[a-z]{2}$/i;
+/**
+ * Tests for the inward code section of a postcode
+ */
 export const INCODE_REGEX = /\d[a-z]{2}$/i;
+/**
+ * Tests for the outward code section of a postcode
+ */
 export const OUTCODE_REGEX = /^[a-z]{1,2}\d[a-z\d]?$/i;
+/**
+ * Tests for a valid postcode
+ */
 export const POSTCODE_REGEX = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
+
+/**
+ * Tests for the area section of a postcode
+ */
 export const AREA_REGEX = /^[a-z]{1,2}/i;
 
+/**
+ * @hidden
+ */
 interface Validator {
   (input: string): boolean;
 }
 
 interface Parser {
+  /**
+   * @hidden
+   */
   (postcode: string): string | null;
 }
 
@@ -37,6 +62,10 @@ type InvalidPostcode = {
   unit: null;
 };
 
+/**
+ * Invalid postcode prototype
+ * @hidden
+ */
 const invalidPostcode: InvalidPostcode = {
   valid: false,
   postcode: null,
@@ -209,6 +238,36 @@ export const toSubDistrict: Parser = (postcode) => {
 
 /**
  * Returns a ValidPostcode or InvalidPostcode object from a postcode string
+ *
+ * @example
+ *
+ * ```
+ * import { parse } from "postcode";
+ *
+ * const {
+ * postcode,    // => "SW1A 2AA"
+ * outcode,     // => "SW1A"
+ * incode,      // => "2AA"
+ * area,        // => "SW"
+ * district,    // => "SW1"
+ * unit,        // => "AA"
+ * sector,      // => "SW1A 2"
+ * subDistrict, // => "SW1A"
+ * valid,       // => true
+ * } = parse("Sw1A     2aa");
+ *
+ * const {
+ * postcode,    // => null
+ * outcode,     // => null
+ * incode,      // => null
+ * area,        // => null
+ * district,    // => null
+ * unit,        // => null
+ * sector,      // => null
+ * subDistrict, // => null
+ * valid,       // => false
+ * } = parse("    Oh no, ):   ");
+ * ```
  */
 export const parse = (postcode: string): ValidPostcode | InvalidPostcode => {
   if (!isValid(postcode)) return { ...invalidPostcode };
