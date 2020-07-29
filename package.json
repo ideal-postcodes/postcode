@@ -4,6 +4,7 @@
   "description": "UK Postcode helper methods",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "module": "esm/index.js",
   "engines": {
     "node": ">= 10.0.0"
   },
@@ -46,6 +47,7 @@
   },
   "files": [
     "dist",
+    "esm",
     "example.js"
   ],
   "runkitExampleFilename": "example.js",
@@ -56,6 +58,7 @@
     ],
     "exclude": [
       "dist/*",
+      "esm/*",
       "**/*.d.ts",
       "generate/index.ts"
     ],
@@ -78,7 +81,7 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint lib/**/*.ts",
     "docs": "typedoc --mode file --excludePrivate --hideGenerator --excludeExternals --target ES5 --out docs/ --name 'Postcode.js' --theme minimal lib/",
-    "build": "tsc",
+    "build": "tsc && tsc --outDir esm -m ESNext",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
