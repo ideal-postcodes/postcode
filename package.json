@@ -23,7 +23,7 @@
     "codecov": "~3.7.0",
     "csv-parse": "~4.11.1",
     "eslint": "~7.6.0",
-    "mocha": "~8.0.1",
+    "mocha": "~8.1.0",
     "nyc": "~15.1.0",
     "prettier": "~2.0.1",
     "semantic-release": "~17.1.0",
