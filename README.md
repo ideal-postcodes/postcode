@@ -7,9 +7,10 @@
 ![CI](https://github.com/ideal-postcodes/postcode/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/ideal-postcodes/postcode/branch/master/graph/badge.svg)](https://codecov.io/gh/ideal-postcodes/postcode)
 [![Dependencies](https://david-dm.org/ideal-postcodes/postcode.svg)](https://david-dm.org/ideal-postcodes/postcode)
-[![Size](https://img.shields.io/bundlephobia/min/postcode.svg?style=flat)](https://bundlephobia.com/result?p=postcode)
-[![Downloads](https://img.shields.io/npm/dm/postcode.svg)](https://www.npmjs.com/package/postcode)
 [![Release](https://github.com/ideal-postcodes/postcode/workflows/Release/badge.svg)](https://github.com/ideal-postcodes/postcode/actions)
+
+[![Size](https://img.shields.io/bundlephobia/minzip/postcode.svg?style=flat)](https://bundlephobia.com/result?p=postcode)
+[![Downloads](https://img.shields.io/npm/dm/postcode.svg)](https://www.npmjs.com/package/postcode)
 [![Try postcode on RunKit](https://badge.runkitcdn.com/postcode.svg)](https://npm.runkit.com/postcode)
 
 Utility methods for UK Postcodes, including validating the shape of a postcode, extracting postcode elements (like incodes, outcodes, areas and [more](#Definitions)).
@@ -22,6 +23,7 @@ Tested against ~1.7 million postcodes on ONSPD.
 - [Single purpose static methods](#static-methods)
 - Tested against a list of ~1.7 million postcodes listed on ONS Postcode Directory
 - [Extract](#parse) useful elements of a postcode like incode, outcode, sector
+- Tree-shakeable
 ![Postcode Components](https://img.ideal-postcodes.co.uk/uk-postcode-components.gif)
 
 ## Links
