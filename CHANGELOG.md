@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/ideal-postcodes/postcode/compare/5.0.0...5.1.0) (2021-02-24)
+
+
+### Features
+
+* **fix:** Fix common errors ([de1ed11](https://github.com/ideal-postcodes/postcode/commit/de1ed11a3c33686b09eeb6d62cdb966b8cd16cd2))
+
 # [5.0.0](https://github.com/ideal-postcodes/postcode/compare/4.0.0...5.0.0) (2020-07-29)
 
 
