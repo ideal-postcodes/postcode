@@ -357,3 +357,73 @@ export const replace = (corpus: string, replaceWith = ""): ReplaceResult => ({
   match: match(corpus),
   result: corpus.replace(POSTCODE_CORPUS_REGEX, replaceWith),
 });
+
+export const FIXABLE_REGEX = /^\s*[a-z01]{1,2}[0-9oi][a-z\d]?\s*[0-9oi][a-z01]{2}\s*$/i;
+
+/**
+ * Attempts to fix and clean a postcode. Specifically:
+ * - Performs character conversion on obviously wrong and commonly mixed up letters (e.g. O => 0 and vice versa)
+ * - Trims string
+ * - Properly adds space between outward and inward codes
+ *
+ * If the postcode cannot be coerced into a valid format, the original string is returned
+ *
+ * @example
+ * ```javascript
+ * fix(" SW1A  2AO") => "SW1A 2AO" // Properly spaces
+ * fix("SW1A 2A0") => "SW1A 2AO" // 0 is coerced into "0"
+ * ```
+ *
+ * Aims to be used in conjunction with parse to make postcode entry more forgiving:
+ *
+ * @example
+ * ```javascript
+ * const { inward } = parse(fix("SW1A 2A0")); // inward = "2AO"
+ * ```
+ */
+export const fix = (s: string): string => {
+  const match = s.match(FIXABLE_REGEX);
+  if (match === null) return s;
+  s = s.toUpperCase().trim().replace(/\s+/gi, "");
+  const l = s.length;
+  const inward = s.slice(l - 3, l);
+  return `${coerceOutcode(s.slice(0, l - 3))} ${coerce("NLL", inward)}`;
+};
+
+const toLetter: Record<string, string> = {
+  "0": "O",
+  "1": "I",
+};
+
+const toNumber: Record<string, string> = {
+  O: "0",
+  I: "1",
+};
+
+const coerceOutcode = (i: string): string => {
+  if (i.length === 2) return coerce("LN", i);
+  if (i.length === 3) return coerce("L??", i);
+  if (i.length === 4) return coerce("LLN?", i);
+  return i;
+};
+
+/**
+ * Given a pattern of letters, numbers and unknowns represented as a sequence
+ * of L, Ns and ? respectively; coerce them into the correct type given a
+ * mapping of potentially confused letters
+ *
+ * @hidden
+ *
+ * @example coerce("LLN", "0O8") => "OO8"
+ */
+const coerce = (pattern: string, input: string): string =>
+  input
+    .split("")
+    .reduce<string[]>((acc, c, i) => {
+      const target = pattern.charAt(i);
+      if (target === "N") acc.push(toNumber[c] || c);
+      if (target === "L") acc.push(toLetter[c] || c);
+      if (target === "?") acc.push(c);
+      return acc;
+    }, [])
+    .join("");
