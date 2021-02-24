@@ -5,7 +5,7 @@ import axios from "axios";
 
 const TIMEOUT = 60000;
 
-import { parse } from "../lib/index";
+import { parse, fix } from "../lib/index";
 
 const url = "https://data.ideal-postcodes.co.uk/postcodes.csv";
 
@@ -22,6 +22,13 @@ describe("Exhaustive postcode test", () => {
       .split(/\r\n|\r|\n/)
       .map((p: string) => p.trim())
       .filter((p: string) => p !== "GIR 0AA");
+  });
+
+  describe("fix", () => {
+    it("never corrects a valid postcode", function () {
+      this.timeout(TIMEOUT);
+      postcodes.forEach((p) => assert.equal(fix(p), p));
+    });
   });
 
   describe(".valid", () => {

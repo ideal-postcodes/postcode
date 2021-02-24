@@ -60,7 +60,7 @@ isValid("AA1 1AB"); // => true
 
 Pass a string to `parse`. This will return a valid or invalid postcode instance which can be easily destructured.
 
-#### Valid Postcode 
+#### Valid Postcode
 
 `ValidPostcode` type definition
 
@@ -80,7 +80,7 @@ const {
 } = parse("Sw1A     2aa");
 ```
 
-#### Invalid Postcode 
+#### Invalid Postcode
 
 `InvalidPostcode` type definition
 
@@ -161,6 +161,33 @@ toDistrict("Sw1A 2aa");    // => "SW1"
 toSubDistrict("Sw1A 2aa"); // => "SW1A"
 toSector("Sw1A 2aa");      // => "SW1A 2"
 toUnit("Sw1A 2aa");        // => "AA"
+```
+
+#### Fix
+
+`fix` Attempts to correct and clean up a postcode without validating by replacing commonly misplaced characters (e.g. mixing up `0` and `"O"`, `1` and `"I"`). This method will also uppercase and fix spacing. The original input is returned if it cannot be reliably fixed.
+
+```javascript
+fix("SWIA 2AA") => "SW1A 2AA" // Corrects I to 1
+fix("SW1A 21A") => "SW1A 2IA" // Corrects 1 to I
+fix("SW1A OAA") => "SW1A 0AA" // Corrects O to 0
+fix("SW1A 20A") => "SW1A 2OA" // Corrects 0 to O
+
+// Other effects
+fix(" SW1A  2AO") => "SW1A 2AO" // Properly spaces
+fix("SW1A 2A0") => "SW1A 2AO" // 0 is coerced into "0"
+```
+
+Aims to be used in conjunction with parse to make postcode entry more forgiving:
+
+```javascript
+const { inward } = parse(fix("SW1A 2A0")); // inward = "2AO"
+```
+
+If the input is not deemed fixable, the original string will be returned
+
+```javascript
+fix("12a") => "12a"
 ```
 
 #### Extract & Replace
