@@ -175,7 +175,7 @@ fix("SW1A 20A") => "SW1A 2OA" // Corrects 0 to O
 
 // Other effects
 fix(" SW1A  2AO") => "SW1A 2AO" // Properly spaces
-fix("SW1A 2A0") => "SW1A 2AO" // 0 is coerced into "0"
+fix("sw1a 2aa") => "SW1A 2AA" // Uppercase
 ```
 
 Aims to be used in conjunction with parse to make postcode entry more forgiving:
