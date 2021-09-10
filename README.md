@@ -155,7 +155,7 @@ import {
 toNormalised("Sw1A 2aa");  // => "SW1A 2AA"
 toOutcode("Sw1A 2aa");     // => "SW1A"
 toIncode("Sw1A 2aa");      // => "2AA"
-toArea("Sw1A 2aa");        // => "AA"
+toArea("Sw1A 2aa");        // => "SW"
 toDistrict("Sw1A 2aa");    // => "SW1"
 toSubDistrict("Sw1A 2aa"); // => "SW1A"
 toSector("Sw1A 2aa");      // => "SW1A 2"
