@@ -4,11 +4,6 @@
 
 > Validate & parse UK postcodes
 
-![CI](https://github.com/ideal-postcodes/postcode/workflows/CI/badge.svg)
-[![codecov](https://codecov.io/gh/ideal-postcodes/postcode/branch/master/graph/badge.svg)](https://codecov.io/gh/ideal-postcodes/postcode)
-[![Dependencies](https://david-dm.org/ideal-postcodes/postcode.svg)](https://david-dm.org/ideal-postcodes/postcode)
-[![Release](https://github.com/ideal-postcodes/postcode/workflows/Release/badge.svg)](https://github.com/ideal-postcodes/postcode/actions)
-
 [![Size](https://img.shields.io/bundlephobia/minzip/postcode.svg?style=flat)](https://bundlephobia.com/result?p=postcode)
 [![Downloads](https://img.shields.io/npm/dm/postcode.svg)](https://www.npmjs.com/package/postcode)
 [![Try postcode on RunKit](https://badge.runkitcdn.com/postcode.svg)](https://npm.runkit.com/postcode)
