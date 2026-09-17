@@ -20,7 +20,6 @@
     "@types/node": "22.20.3",
     "axios": "1.20.0",
     "chai": "6.2.2",
-    "codecov": "~3.8.0",
     "eslint": "10.10.0",
     "mocha": "12.0.1",
     "nyc": "18.0.0",
@@ -81,7 +80,7 @@
     "lint": "eslint lib/**/*.ts",
     "docs": "typedoc",
     "build": "tsc && tsc --outDir esm -m ESNext",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
   "repository": {
     "type": "git",
