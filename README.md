@@ -24,7 +24,6 @@ Tested against ~1.7 million postcodes on ONSPD.
 ## Links
 
 - [GitHub Repository](https://github.com/ideal-postcodes/postcode)
-- [API Documentation](https://postcodejs.ideal-postcodes.dev)
 - [Try postcode.js on RunKit](https://npm.runkit.com/postcode)
 - [Postcode element definitions](#definitions)
 - [Notes](#notes)
