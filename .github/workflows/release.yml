@@ -9,26 +9,21 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v7
         with:
-          node-version: ${{ matrix.node-version }}
+          # semantic-release needs full history and tags, and pushes with GH_TOKEN
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Cache node modules
-        uses: actions/cache@v1
+      - name: Use Node.js 24.x
+        uses: actions/setup-node@v7
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}-${{ matrix.node-version }}
+          node-version: 24.x
+          cache: npm
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Test
         run: npm test
